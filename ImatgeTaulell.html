@@ -18,16 +18,17 @@
     </script><table id="TaulellEscacs">
     <tbody>
         <script type="text/javascript" src="TaulellOrdinador.js"></script>
+        <script type="text/javascript" src="ProgramaLogica/MoveChooser.js"></script>
+        <script type="text/javascript" src="ProgramaLogica/MoveFinder.js"></script>
+        <script type="text/javascript" src="ProgramaLogica/MoveKnower.js"></script>
         <script type="text/javascript" src="DibuixarTaulell.js"></script>
         <script type="text/javascript">
             let inicial = new Taulell(true);
 
             DibuixarTaulell(inicial);
 
-    
-            let nouTaulell = inicial.moveFitxaEnPosicio(1, 1, 2, 1);
+            DibuixarTaulell(TriarMoviment(LlistarMoviments(getAllFitxaEnPosicio())))
 
-            DibuixarTaulell(nouTaulell);
         </script>
     </tbody>
 </table>
