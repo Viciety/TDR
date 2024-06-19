@@ -1,5 +1,3 @@
-console.log("Funció EscriureTaulell")
-
 const BUIDA = 0;
 /**PECES */
 const PEO_BLANC = 1;
@@ -34,7 +32,6 @@ class Taulell{
         }else if(inicial instanceof Array){
             this.array = inicial;
         }
-        console.log(this.array)
     }
 
     getFitxaEnPosicio(i, j){
@@ -73,7 +70,6 @@ class Taulell{
 
 
 
-console.log("Funció DibuixarPeça")
 function DibuixarPeça(taulell, ColorCasella, i, j){
     if (taulell.getFitxaEnPosicio(i,j) == BUIDA){
         document.write("<td class='"+ColorCasella+"'></td>");
@@ -81,7 +77,6 @@ function DibuixarPeça(taulell, ColorCasella, i, j){
         document.write("<td class='"+ColorCasella+"'><img title='"+taulell.getFitxaEnPosicio(i,j)+"' width='60px' src=Imatges/Peces/"+imatges[taulell.getFitxaEnPosicio(i,j)-1]+"> </td>");
     }
 }
-console.log("Funció DibuixarTaulell")
 function DibuixarTaulell(taulell){
     let ColorCasella = 'white';
     document.write("<table>");
@@ -99,10 +94,8 @@ function DibuixarTaulell(taulell){
 }
 let taulell = new Taulell(true);
 
-console.log("Cridant funció DibuixarTaulell")
 DibuixarTaulell(taulell);
 
-console.log("Cridant funció DibuixarTaulell amb moviment")
 let despresMoviment = taulell.moveFitxaEnPosicio(6,4,4,4,PEO_BLANC)
 DibuixarTaulell(despresMoviment);
 let despresMoviment2 = despresMoviment.moveFitxaEnPosicio(1,4,3,4,PEO_NEGRE)

@@ -1,4 +1,4 @@
 function TriarMoviment(PossiblesMoviments){
-    let moviment = PossiblesMoviments[Math.random];
+    let moviment = PossiblesMoviments[0];
     return moviment
 }

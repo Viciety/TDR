@@ -1,5 +1,5 @@
 const BUIDA = 0;
-/**PECES */
+/* PECES */
 const PEO_BLANC = 1;
 const TORRE_BLANCA = 2;
 const CAVALL_BLANC = 3;
@@ -12,6 +12,10 @@ const CAVALL_NEGRE = 9;
 const ALFIL_NEGRE = 10;
 const REINA_NEGRA = 11;
 const REI_NEGRE = 12;
+
+/* JUGADORS */
+BLANC = true
+NEGRE = false
 
 class Taulell{
     constructor(inicial){
@@ -29,7 +33,6 @@ class Taulell{
         }else if(inicial instanceof Array){
             this.array = inicial;
         }
-        console.log(this.array)
     }
 
     getFitxaEnPosicio(i, j){
@@ -65,14 +68,16 @@ class Taulell{
     }
 
     getAllFitxaEnPosicio(){
-        let PecesiPosicio = new Array();
+        let pecesiPosicio = new Array();
         for (let i = 0; i<this.array.length; i++){
             for (let j = 0; j<this.array[i].length; j++){
-                let PeçaiPosicio = new Array (this.array[i][j], i, j);
-                PecesiPosicio.push(PeçaiPosicio);
+                if (this.array[i][j] != BUIDA){
+                    let PeçaiPosicio = new Array (this.array[i][j], i, j);
+                    pecesiPosicio.push(PeçaiPosicio);
+                }
             }
         }
-        return PecesiPosicio
+        return pecesiPosicio
     }
     
 }
