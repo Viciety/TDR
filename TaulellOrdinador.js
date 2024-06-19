@@ -55,7 +55,7 @@ class Taulell{
             throw "Posició inicial "+i+", "+j+" invàlida"
         }else if (x>7 || x<0 || y>7 || y<0){
             throw "Posició final "+x+", "+y+" invàlida"
-        }else if (this.array==0){
+        }else if (this.array[i][j]==0){
             throw "Casella buida"
         }
         let nouArray = JSON.parse(JSON.stringify(this.array));
@@ -66,13 +66,13 @@ class Taulell{
 
     getAllFitxaEnPosicio(){
         let PecesiPosicio = new Array();
-        for (let i = 0; i<=Taulell.length; i++){
-            for (let j = 0; i<=Taulell[i].length; j++){
-                let PeçaiPosicio = Taulell[i][j], i, j;
+        for (let i = 0; i<this.array.length; i++){
+            for (let j = 0; j<this.array[i].length; j++){
+                let PeçaiPosicio = new Array (this.array[i][j], i, j);
                 PecesiPosicio.push(PeçaiPosicio);
             }
         }
         return PecesiPosicio
     }
-
+    
 }
