@@ -26,8 +26,14 @@
             let inicial = new Taulell(true);
 
             DibuixarTaulell(inicial);
-
-            DibuixarTaulell(TriarMoviment(LlistarMoviments(inicial, BLANC)))
+            
+            let jugador = NEGRE;
+            let seguentTaulell= inicial;
+            for (let moviments = 0; moviments<30; moviments++){
+                seguentTaulell = TriarMoviment(LlistarMoviments(seguentTaulell, jugador));
+                DibuixarTaulell(seguentTaulell);
+                jugador = (jugador == BLANC) ? NEGRE : BLANC;
+            }
 
         </script>
     </tbody>
