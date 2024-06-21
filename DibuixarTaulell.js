@@ -6,7 +6,7 @@ function DibuixarPeça(taulell, ColorCasella, i, j){
     if (taulell.getFitxaEnPosicio(i,j) == BUIDA){
         document.write("<td class='"+ColorCasella+"'></td>");
     }else{
-        document.write("<td class='"+ColorCasella+"'><img title='"+taulell.getFitxaEnPosicio(i,j)+"' width='60px' src=Imatges/Peces/"+imatges[taulell.getFitxaEnPosicio(i,j)-1]+" /> </td>");
+        document.write("<td class='"+ColorCasella+"'><img title='"+taulell.getFitxaEnPosicio(i,j).peça+"' width='60px' src=Imatges/Peces/"+imatges[taulell.getFitxaEnPosicio(i,j).peça-1]+" /> </td>");
     }
 }
 

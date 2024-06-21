@@ -23,11 +23,11 @@ class Taulell{
         let files = Array.from(Array(8).fill(fila))
         if(inicial === undefined){
             this.array = files;
-        }else if (typeof(inicial) == 'boolean'){  // quan haguem de carregar taulell a mitja partida, afegir else if 
-            files [0] = new Array(TORRE_NEGRA,CAVALL_NEGRE,ALFIL_NEGRE,REINA_NEGRA,REI_NEGRE,ALFIL_NEGRE,CAVALL_NEGRE,TORRE_NEGRA);
-            files [1] = new Array(8).fill(PEO_NEGRE);
-            files [6] = new Array(8).fill(PEO_BLANC);
-            files [7] = new Array(TORRE_BLANCA,CAVALL_BLANC,ALFIL_BLANC,REINA_BLANCA,REI_BLANC,ALFIL_BLANC,CAVALL_BLANC,TORRE_BLANCA);
+        }else if (typeof(inicial) == 'boolean'){ 
+            files [0] = new Array(new StupidFitxa(BLANC, TORRE_NEGRA), new StupidFitxa(BLANC, CAVALL_NEGRE), new StupidFitxa(BLANC, ALFIL_NEGRE), new StupidFitxa(BLANC, REINA_NEGRA), new StupidFitxa(BLANC, REI_NEGRE), new StupidFitxa(BLANC, ALFIL_NEGRE), new StupidFitxa(BLANC, CAVALL_NEGRE), new StupidFitxa(BLANC, TORRE_NEGRA));
+            files [1] = new Array(8).fill(0).map(() => new Peo(NEGRE));
+            files [6] = new Array(8).fill(0).map(() => new Peo(BLANC));
+            files [7] = new Array(new StupidFitxa(BLANC, TORRE_BLANCA), new StupidFitxa(BLANC, CAVALL_BLANC), new StupidFitxa(BLANC, ALFIL_BLANC), new StupidFitxa(BLANC, REINA_BLANCA), new StupidFitxa(BLANC, REI_BLANC), new StupidFitxa(BLANC, ALFIL_BLANC), new StupidFitxa(BLANC, CAVALL_BLANC), new StupidFitxa(BLANC, TORRE_BLANCA));
             
             this.array = files;
         }else if(inicial instanceof Array){
@@ -42,13 +42,25 @@ class Taulell{
         return this.array[i][j];
     }
 
+    getPosicioFitxa(taulell, fitxa){
+        let posicio = new Array();
+        for (let i = 0; i<taulell.length; i++){
+            for (let j = 0; j<taulell[i].length; j++){
+                if (taulell[i][j] == fitxa){
+                    posicio.push(i, j);
+                }
+            }
+        }
+        return posicio
+    }
+
     addFitxaEnPosicio(i, j, fitxa){
         if(fitxa > 12 || fitxa < 0){
             throw "Fitxa a posar a "+i+ ", "+j+" no és vàlida: "+fitxa
         }else if (i>7 || i<0 || j>7 || j<0){
             throw "Posició "+i+", "+j+" invàlida" 
         }
-        let nouArray = JSON.parse(JSON.stringify(this.array)); 
+        let nouArray = this.array; 
         nouArray[i][j] = fitxa;
         return new Taulell(nouArray);
     }
@@ -61,7 +73,7 @@ class Taulell{
         }else if (this.array[i][j]==0){
             throw "Casella buida"
         }
-        let nouArray = JSON.parse(JSON.stringify(this.array));
+        let nouArray = this.array;
         nouArray [x][y] = nouArray [i][j];
         nouArray[i][j] = 0;
         return new Taulell(nouArray);
