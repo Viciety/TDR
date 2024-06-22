@@ -19,8 +19,8 @@ NEGRE = false
 
 class Taulell{
     constructor(inicial){
-        let fila = Array.from(Array(8).fill(BUIDA));
-        let files = Array.from(Array(8).fill(fila))
+        function novaFila(){return Array(8).fill(0).map(() => BUIDA);}
+        let files = Array(8).fill(0).map(() => novaFila());
         if(inicial === undefined){
             this.array = files;
         }else if (typeof(inicial) == 'boolean'){ 
@@ -33,6 +33,22 @@ class Taulell{
         }else if(inicial instanceof Array){
             this.array = inicial;
         }
+    }
+
+    cloneArray(array){
+        let nouArray = new Array(8);
+        for (let i = 0; i<array.length; i++){
+            let novaFila = new Array(8);
+            for (let j = 0; j<array[i].length; j++){
+                if (array[i][j] != BUIDA){
+                    novaFila[j] = array[i][j].cloneFitxa();
+                }else{
+                    novaFila[j] = (BUIDA);
+                }
+            }
+            nouArray[i] = novaFila;
+        }
+        return nouArray;
     }
 
     getFitxaEnPosicio(i, j){
@@ -55,12 +71,12 @@ class Taulell{
     }
 
     addFitxaEnPosicio(i, j, fitxa){
-        if(fitxa > 12 || fitxa < 0){
-            throw "Fitxa a posar a "+i+ ", "+j+" no és vàlida: "+fitxa
+        if(fitxa.peça > 12 || fitxa.peça < 0){
+            throw "Fitxa a posar a "+i+ ", "+j+" no és vàlida: "+fitxa.peça
         }else if (i>7 || i<0 || j>7 || j<0){
             throw "Posició "+i+", "+j+" invàlida" 
         }
-        let nouArray = this.array; 
+        let nouArray = this.cloneArray(this.array); //TODO clone instead of reference
         nouArray[i][j] = fitxa;
         return new Taulell(nouArray);
     }
@@ -70,12 +86,12 @@ class Taulell{
             throw "Posició inicial "+i+", "+j+" invàlida"
         }else if (x>7 || x<0 || y>7 || y<0){
             throw "Posició final "+x+", "+y+" invàlida"
-        }else if (this.array[i][j]==0){
+        }else if (this.array[i][j]==BUIDA){
             throw "Casella buida"
         }
-        let nouArray = this.array;
-        nouArray [x][y] = nouArray [i][j];
-        nouArray[i][j] = 0;
+        let nouArray = this.cloneArray(this.array);//TODO clone instead of reference
+        nouArray [x][y] = nouArray [i][j].cloneFitxa();
+        nouArray[i][j] = BUIDA;
         return new Taulell(nouArray);
     }
 
@@ -91,5 +107,6 @@ class Taulell{
         }
         return pecesiPosicio
     }
+
     
 }
