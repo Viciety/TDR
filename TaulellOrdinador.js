@@ -76,7 +76,7 @@ class Taulell{
         }else if (i>7 || i<0 || j>7 || j<0){
             throw "Posició "+i+", "+j+" invàlida" 
         }
-        let nouArray = this.cloneArray(this.array); //TODO clone instead of reference
+        let nouArray = this.cloneArray(this.array); 
         nouArray[i][j] = fitxa;
         return new Taulell(nouArray);
     }
@@ -89,7 +89,7 @@ class Taulell{
         }else if (this.array[i][j]==BUIDA){
             throw "Casella buida"
         }
-        let nouArray = this.cloneArray(this.array);//TODO clone instead of reference
+        let nouArray = this.cloneArray(this.array);
         nouArray [x][y] = nouArray [i][j].cloneFitxa();
         nouArray[i][j] = BUIDA;
         return new Taulell(nouArray);
