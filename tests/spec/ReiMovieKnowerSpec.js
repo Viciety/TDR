@@ -49,6 +49,40 @@ describe('MoveKnower', function() {
           );
         });
       });
+      describe("en mig del taulell amb un peó", function() {      
+        let taulell_blanc = new Taulell().addFitxaEnPosicio(4,5,rei_blanc).addFitxaEnPosicio(4,6,new Peo(BLANC));
+        it("No ha de tornar el taulell sense el peó blanc", function(){
+          let taulells = rei_blanc.moves(4,5, taulell_blanc)
+          expect(taulells.length).toEqual(7);
+          taulells.forEach((taulell_blanc) => {
+            let fitxes = taulell_blanc.getAllFitxaEnPosicio();
+            expect(fitxes.length).toEqual(2);
+          })
+        });
+        let taulell_negre = new Taulell().addFitxaEnPosicio(4,5,rei_negre).addFitxaEnPosicio(4,6,new Peo(NEGRE));
+        it("No ha de tornar el taulell sense el peó negre", function(){
+          let taulells = rei_negre.moves(4,5, taulell_negre)
+          expect(taulells.length).toEqual(7);
+          taulells.forEach((taulell_negre) => {
+            let fitxes = taulell_negre.getAllFitxaEnPosicio();
+            expect(fitxes.length).toEqual(2);
+          });
+        });
+      });
+      describe("en el taulell inicial", function() {      
+        let taulell_inicial = new Taulell(true);
+        it("No s'ha de poder moure", function(){
+          let taulells = rei_negre.moves(0, 4, taulell_inicial)
+          expect(taulells.length).toEqual(0);
+        });
+      });
+      describe("en una cantonada", function() {      
+        let taulell_blanc = new Taulell().addFitxaEnPosicio(7,7,rei_blanc);
+        it("No ha de tornar més de 3 taulells", function(){
+          let taulells = rei_blanc.moves(7,7, taulell_blanc)
+          expect(taulells.length).toEqual(3);
+        });
+      });
     });
   });
 });

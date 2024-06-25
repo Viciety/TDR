@@ -99,7 +99,7 @@ class Rei{
                 continue;
             }else {
                 let fitxa = taulell.getFitxaEnPosicio(y,x);
-                if(fitxa == BUIDA || fitxa.color != this.jugador){
+                if(fitxa == BUIDA || fitxa.color != this.color){
                     PossiblesMovimentsRei.push(taulell.moveFitxaEnPosicio(i, j, y, x));
                 }
             } 

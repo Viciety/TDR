@@ -24,7 +24,7 @@ class Taulell{
         if(inicial === undefined){
             this.array = files;
         }else if (typeof(inicial) == 'boolean'){ 
-            files [0] = new Array(new StupidFitxa(BLANC, TORRE_NEGRA), new StupidFitxa(BLANC, CAVALL_NEGRE), new StupidFitxa(BLANC, ALFIL_NEGRE), new StupidFitxa(BLANC, REINA_NEGRA), new Rei(NEGRE), new StupidFitxa(BLANC, ALFIL_NEGRE), new StupidFitxa(BLANC, CAVALL_NEGRE), new StupidFitxa(BLANC, TORRE_NEGRA));
+            files [0] = new Array(new StupidFitxa(NEGRE, TORRE_NEGRA), new StupidFitxa(NEGRE, CAVALL_NEGRE), new StupidFitxa(NEGRE, ALFIL_NEGRE), new StupidFitxa(NEGRE, REINA_NEGRA), new Rei(NEGRE), new StupidFitxa(NEGRE, ALFIL_NEGRE), new StupidFitxa(NEGRE, CAVALL_NEGRE), new StupidFitxa(NEGRE, TORRE_NEGRA));
             files [1] = new Array(8).fill(0).map(() => new Peo(NEGRE));
             files [6] = new Array(8).fill(0).map(() => new Peo(BLANC));
             files [7] = new Array(new StupidFitxa(BLANC, TORRE_BLANCA), new StupidFitxa(BLANC, CAVALL_BLANC), new StupidFitxa(BLANC, ALFIL_BLANC), new StupidFitxa(BLANC, REINA_BLANCA), new Rei(BLANC), new StupidFitxa(BLANC, ALFIL_BLANC), new StupidFitxa(BLANC, CAVALL_BLANC), new StupidFitxa(BLANC, TORRE_BLANCA));
