@@ -21,6 +21,7 @@
         <script type="text/javascript" src="ProgramaLogica/MoveChooser.js"></script>
         <script type="text/javascript" src="ProgramaLogica/MoveFinder.js"></script>
         <script type="text/javascript" src="ProgramaLogica/MoveKnower.js"></script>
+        <script type="text/javascript" src="ProgramaLogica/MatchFinalDetector.js"></script>
         <script type="text/javascript" src="DibuixarTaulell.js"></script>
         <script type="text/javascript">
             let inicial = new Taulell(true);
@@ -32,6 +33,7 @@
             for (let moviments = 0; moviments<30; moviments++){
                 seguentTaulell = TriarMoviment(LlistarMoviments(seguentTaulell, jugador));
                 DibuixarTaulell(seguentTaulell);
+                if (ScanCheckmate())
                 jugador = (jugador == BLANC) ? NEGRE : BLANC;
             }
 

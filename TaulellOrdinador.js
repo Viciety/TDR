@@ -58,11 +58,11 @@ class Taulell{
         return this.array[i][j];
     }
 
-    getPosicioFitxa(taulell, fitxa){
+    getPosicioFitxa(fitxa){
         let posicio = new Array();
-        for (let i = 0; i<taulell.length; i++){
-            for (let j = 0; j<taulell[i].length; j++){
-                if (taulell[i][j] == fitxa){
+        for (let i = 0; i<this.array.length; i++){
+            for (let j = 0; j<this.array[i].length; j++){
+                if (this.array[i][j].peça == fitxa){
                     posicio.push(i, j);
                 }
             }
