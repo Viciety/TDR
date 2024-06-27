@@ -35,3 +35,28 @@ function ScanCheck(taulell, jugador){
     }
     return check
 }
+
+function ScanStalemate(taulell, jugador){
+    let stalemate = false
+    let MovimentsTotals = LlistarMoviments(taulell, jugador);
+    let MovimentsValids = new Array();
+    if (ScanCheck(taulell, jugador) == false){
+        for (let i = 0; i<MovimentsTotals.length; i++){
+            if (ScanCheck(MovimentsTotals[i], jugador) == true){
+                continue;
+            }else{
+                MovimentsValids.push(MovimentsTotals[i]);
+            }
+        }
+        if (MovimentsValids.length == 0){
+            stalemate = true
+        }
+    }
+    return stalemate
+}
+
+function ScanInsufficientMaterial(taulell){
+    let insufficientMaterial = false;
+    let peces = taulell.getAllFitxaEnPosicio();
+    return insufficientMaterial
+}

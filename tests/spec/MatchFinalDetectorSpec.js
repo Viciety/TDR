@@ -79,4 +79,44 @@ describe('MatchFinalDetector', function() {
             });
         });
     });
+
+    describe('Stalemate', function() {
+  
+        describe('Exemple1: Taulell amb rei i peons que estan en stalemate', function() {
+        
+            let taulellAmbPeo = new Taulell()
+                .addFitxaEnPosicio(0, 7, new Rei(NEGRE))
+                .addFitxaEnPosicio(2, 6, new Peo(BLANC))
+                .addFitxaEnPosicio(2, 5, new Peo(BLANC))
+                .addFitxaEnPosicio(1, 5, new Peo(BLANC));
+  
+            it('Ha de tornar true si li toca al negre', function() {
+            expect(ScanStalemate(taulellAmbPeo, NEGRE)).toEqual(true);
+            });
+        });
+
+        describe('Exemple2: Taulell amb rei i peons que no ofeguen perque pot menjar', function() {
+        
+            let taulellAmbPeo = new Taulell()
+                .addFitxaEnPosicio(0, 7, new Rei(NEGRE))
+                .addFitxaEnPosicio(1, 6, new Peo(BLANC))
+                .addFitxaEnPosicio(2, 6, new Peo(BLANC))
+                .addFitxaEnPosicio(1, 5, new Peo(BLANC));
+                
+            it('Ha de tornar false si li toca al negre perquè pot menjar', function() {
+            expect(ScanCheckmate(taulellAmbPeo, NEGRE)).toEqual(false);
+            });
+        });
+
+        describe('Exemple3: Taulell amb rei i peons amenaçadors del mateix color però es pot escapar', function() {
+            let taulellAmbPeo = new Taulell()
+                .addFitxaEnPosicio(0, 7, new Rei(NEGRE))
+                .addFitxaEnPosicio(2, 6, new Peo(BLANC))
+                .addFitxaEnPosicio(1, 5, new Peo(BLANC));
+  
+            it('Ha de tornar false si li toca al negre peruquè es pot escapar', function() {
+            expect(ScanCheckmate(taulellAmbPeo, NEGRE)).toEqual(false);
+            });
+        });
+    });
 });

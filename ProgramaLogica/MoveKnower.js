@@ -1,5 +1,6 @@
 class Peo{
-    constructor(color){
+    constructor(color, moved){
+        this.preMoves = moved;
         if (color == BLANC){
             this.peça = PEO_BLANC
             this.color = BLANC
@@ -12,7 +13,7 @@ class Peo{
     }
 
     cloneFitxa(){
-        return new Peo(this.color);
+        return new Peo(this.color, true);
     }
 
     getColor(){
@@ -61,7 +62,8 @@ class Peo{
 }
 
 class Rei{
-    constructor(color){
+    constructor(color, moved){
+        this.preMoves = moved;
         if (color == BLANC){
             this.peça = REI_BLANC;
             this.color = BLANC;
@@ -74,7 +76,7 @@ class Rei{
     }
 
     cloneFitxa(){
-        return new Rei(this.color, this.peça);
+        return new Rei(this.color, true);
     }
 
     getColor(){
@@ -130,7 +132,8 @@ class StupidFitxa{
 }
 
 class Cavall{
-    constructor(color, peça){
+    constructor(color, moved){
+        this.preMoves = moved;
         if (color == BLANC){
             this.peça = REI_BLANC
             this.color = BLANC
@@ -140,7 +143,7 @@ class Cavall{
         }
     }
     cloneFitxa(){
-        return new StupidFitxa(this.color, this.peça)
+        return new StupidFitxa(this.color, true)
     }
 
     getColor(){

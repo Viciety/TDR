@@ -21,10 +21,19 @@ describe('MoveKnower', function() {
         }).toThrow('Color no vàlid: blabla');
       });
     });
+
+    /* *FALTA ARREGLAR*
     describe("Al moure'l", function() {
-      it("falten tests de moviment", function() {
-        expect(true).toBeTrue();
+      let inicial = new Taulell()
+        .addFitxaEnPosicio(4, 5, new Peo(BLANC));
+
+      it("Comprovar la posició", function() {
+        expect(inicial.getPosicioFitxa(Peo)).toBe((4, 5));
+      });
+      it("El movem i comprovem la posició", function(){
+        expect(Peo.moves(4, 5, inicial).getPosicioFitxa(Peo)).toEqual(3,5);
       });
     });
+    */
   });
 });
