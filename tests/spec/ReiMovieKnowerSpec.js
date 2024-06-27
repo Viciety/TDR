@@ -2,8 +2,8 @@ describe('MoveKnower', function() {
 
   describe('Un rei', function() {
           
-    let rei_blanc = new Rei(BLANC);
-    let rei_negre = new Rei(NEGRE);
+    let rei_blanc = new Rei(BLANC, true);
+    let rei_negre = new Rei(NEGRE, true);
 
     describe('Al crear-lo', function() {
 
@@ -50,7 +50,7 @@ describe('MoveKnower', function() {
         });
       });
       describe("en mig del taulell amb un peó", function() {      
-        let taulell_blanc = new Taulell().addFitxaEnPosicio(4,5,rei_blanc).addFitxaEnPosicio(4,6,new Peo(BLANC));
+        let taulell_blanc = new Taulell().addFitxaEnPosicio(4,5,rei_blanc).addFitxaEnPosicio(4,6,new Peo(BLANC, true));
         it("No ha de tornar el taulell sense el peó blanc", function(){
           let taulells = rei_blanc.moves(4,5, taulell_blanc)
           expect(taulells.length).toEqual(7);
@@ -59,7 +59,7 @@ describe('MoveKnower', function() {
             expect(fitxes.length).toEqual(2);
           })
         });
-        let taulell_negre = new Taulell().addFitxaEnPosicio(4,5,rei_negre).addFitxaEnPosicio(4,6,new Peo(NEGRE));
+        let taulell_negre = new Taulell().addFitxaEnPosicio(4,5,rei_negre).addFitxaEnPosicio(4,6,new Peo(NEGRE, true));
         it("No ha de tornar el taulell sense el peó negre", function(){
           let taulells = rei_negre.moves(4,5, taulell_negre)
           expect(taulells.length).toEqual(7);

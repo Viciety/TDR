@@ -4,8 +4,8 @@ describe('MoveKnower', function() {
 
     describe('Al crear-lo', function() {
       
-      let peo_blanc = new Peo(BLANC);
-      let peo_negre = new Peo(NEGRE);
+      let peo_blanc = new Peo(BLANC, true);
+      let peo_negre = new Peo(NEGRE, true);
 
       it('ha de respectar el color del constructor quan es blanc', function() {
         expect(peo_blanc.getColor()).toEqual(BLANC);
@@ -25,7 +25,7 @@ describe('MoveKnower', function() {
     /* *FALTA ARREGLAR*
     describe("Al moure'l", function() {
       let inicial = new Taulell()
-        .addFitxaEnPosicio(4, 5, new Peo(BLANC));
+        .addFitxaEnPosicio(4, 5, new Peo(BLANC, false));
 
       it("Comprovar la posició", function() {
         expect(inicial.getPosicioFitxa(Peo)).toBe((4, 5));

@@ -22,42 +22,38 @@ class Peo{
 
     moves(i, j, taulell){
         if (this.color == BLANC){
-            let PossiblesMovimentsPeo = new Array()
-            if (i != 0){
-                if (j != 0){
-                    if (taulell.getFitxaEnPosicio(i-1, j-1).peça > REI_BLANC){
-                        PossiblesMovimentsPeo.push(taulell.moveFitxaEnPosicio(i, j, i-1, j-1));
-                    }
-                }
-                if (j != 7){
-                    if (taulell.getFitxaEnPosicio(i-1, j+1).peça > REI_BLANC){
-                        PossiblesMovimentsPeo.push(taulell.moveFitxaEnPosicio(i, j, i-1, j+1));
-                    }
-                }
-                if (taulell.getFitxaEnPosicio(i-1, j) == BUIDA){
-                    PossiblesMovimentsPeo.push(taulell.moveFitxaEnPosicio(i, j, i-1, j));
-                }
-            }
-            return PossiblesMovimentsPeo
+            var Vector1 = new Array(-1, 0);
+            var Vector2 = new Array(-1, -1);
+            var Vector3 = new Array(-1, 1);
+            var Vector4 = new Array(-2, 0);
         }else if (this.color == NEGRE){
-            let PossiblesMovimentsPeo = new Array()
-            if (i != 7){
-                if (j != 0){
-                    if (taulell.getFitxaEnPosicio(i+1, j-1).peça < PEO_NEGRE && taulell.getFitxaEnPosicio(i+1, j-1) != BUIDA){
-                        PossiblesMovimentsPeo.push(taulell.moveFitxaEnPosicio(i, j, i+1, j-1));
-                    }
-                }
-                if (j != 7){
-                    if (taulell.getFitxaEnPosicio(i+1, j+1).peça < PEO_NEGRE && taulell.getFitxaEnPosicio(i+1, j+1) != BUIDA){
-                        PossiblesMovimentsPeo.push(taulell.moveFitxaEnPosicio(i, j, i+1, j+1));
-                    }
-                }
-                if (taulell.getFitxaEnPosicio(i+1, j) == BUIDA){
-                    PossiblesMovimentsPeo.push(taulell.moveFitxaEnPosicio(i, j, i+1, j));
-                }
-            }
-            return PossiblesMovimentsPeo;
+            var Vector1 = new Array(1, 0);
+            var Vector2 = new Array(1, 1);
+            var Vector3 = new Array(1, -1);
+            var Vector4 = new Array(2, 0);
+        } 
+        let LlistaVectors = new Array(Vector1, Vector2, Vector3);
+        if (this.preMoves = false){
+            LlistaVectors.push(Vector4)
         }
+        let PossiblesMovimentsPeo = new Array();
+        for (let z = 0; z<LlistaVectors.length; z++){
+            let y = i + LlistaVectors[z][0];
+            let x = j + LlistaVectors[z][1];
+            if (y<0 || y>7 || x<0 || x>7){
+                continue;
+            }else {
+                let fitxa = taulell.getFitxaEnPosicio(y,x);
+                if(z == 0 && fitxa == BUIDA){
+                    PossiblesMovimentsPeo.push(taulell.moveFitxaEnPosicio(i, j, y, x));
+                }else if(z>0 && fitxa.color != this.color && fitxa != BUIDA){
+                    PossiblesMovimentsPeo.push(taulell.moveFitxaEnPosicio(i, j, y, x));
+                }else if (this.preMoves == false && fitxa == BUIDA){
+                    PossiblesMovimentsPeo.push(taulell.moveFitxaEnPosicio(i, j, y, x));
+                }
+            } 
+        }
+        return PossiblesMovimentsPeo
     }
 }
 
