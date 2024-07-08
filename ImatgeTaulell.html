@@ -30,10 +30,13 @@
             
             let jugador = BLANC;
             let seguentTaulell= inicial;
-            for (let moviments = 0; moviments<30; moviments++){
+            for (let moviments = 0; moviments<50; moviments++){
                 seguentTaulell = TriarMoviment(LlistarMoviments(seguentTaulell, jugador));
                 DibuixarTaulell(seguentTaulell);
-                if (ScanCheckmate())
+                if (ScanCheckmate(seguentTaulell, jugador) == true){
+                    document.write("Ha guanyat el jugador "+!jugador+"!");
+                    break;
+                }
                 jugador = (jugador == BLANC) ? NEGRE : BLANC;
             }
 
