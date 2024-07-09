@@ -28,10 +28,14 @@
 
             DibuixarTaulell(inicial);
             
+            
             let jugador = BLANC;
             let seguentTaulell= inicial;
             for (let moviments = 0; moviments<50; moviments++){
-                seguentTaulell = TriarMoviment(LlistarMoviments(seguentTaulell, jugador));
+                seguentTaulell = TriarMoviment(LlistarMoviments(seguentTaulell, jugador), jugador);
+                if (seguentTaulell == undefined){
+                    throw "seguentTaulell is undefined a l'HTML"
+                }
                 DibuixarTaulell(seguentTaulell);
                 if (ScanCheckmate(seguentTaulell, jugador) == true){
                     document.write("Ha guanyat el jugador "+!jugador+"!");
