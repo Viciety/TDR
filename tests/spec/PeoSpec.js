@@ -22,7 +22,7 @@ describe('MoveKnower', function() {
       });
     });
 
-    describe("Al moure'l", function() {
+    describe("Al moure'l una casella", function() {
       let peo_blanc = new Peo(BLANC, true);
       let inicial = new Taulell()
         .addFitxaEnPosicio(4, 5, peo_blanc);
@@ -36,11 +36,26 @@ describe('MoveKnower', function() {
         expect(move[0].getFitxaEnPosicio(4, 5)).toEqual(BUIDA)
       });
     });
+    describe("Al moure'l dues caselles", function() {
+      let peo_blanc = new Peo(BLANC, false);
+      let inicial = new Taulell()
+        .addFitxaEnPosicio(4, 5, peo_blanc);
+      it("Comprovar la posició", function() {
+        expect(inicial.getFitxaEnPosicio(4,5)).toBe(peo_blanc);
+      });
+      it("El movem i comprovem la posició", function(){
+        let move = peo_blanc.moves(4, 5, inicial)
+        expect(move.length).toEqual(2)
+        expect(move[0].getFitxaEnPosicio(3, 5).peça).toEqual(PEO_BLANC);
+        expect(move[1].getFitxaEnPosicio(2, 5).peça).toEqual(PEO_BLANC);
+        expect(move[0].getFitxaEnPosicio(4, 5)).toEqual(BUIDA)
+      });
+    });
     
     describe("Al clonar-lo", function() {
       let peo_blanc = new Peo(BLANC, false);
       let peo_blanc2 = peo_blanc.cloneFitxa();
-      it('Que el clone et torni un peo amb les mateixes propietats que les dabans', function(){
+      it('Que el clone et torni un peo amb les mateixes propietats que les dabans menys el premoves', function(){
         expect(peo_blanc.peça).toEqual(PEO_BLANC)
         expect(peo_blanc.color).toEqual(BLANC)
         expect(peo_blanc.preMoves).toEqual(false)
