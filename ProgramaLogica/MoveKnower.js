@@ -33,8 +33,8 @@ class Peo{
             var Vector4 = new Array(2, 0, false);
         } 
         let LlistaVectors = new Array(Vector1, Vector2, Vector3);
-        if (this.preMoves = false){
-            LlistaVectors.push(Vector4)
+        if (this.preMoves == false){
+            LlistaVectors.push(Vector4);
         }
         let PossiblesMovimentsPeo = new Array();
         for (let z = 0; z<LlistaVectors.length; z++){
