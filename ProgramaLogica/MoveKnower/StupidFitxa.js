@@ -12,7 +12,7 @@ class StupidFitxa{
         return this.color
     }
 
-    moves(i, j, taulell){
+    moves(inicialVerticalCoord, inicialHoritzontalCoord, taulell){
         let PossiblesMoviments = new Array();
         return PossiblesMoviments
     }

@@ -24,10 +24,10 @@ class Taulell{
         if(inicial === undefined){
             this.array = files;
         }else if (typeof(inicial) == 'boolean'){ 
-            files [0] = new Array(new StupidFitxa(NEGRE, TORRE_NEGRA), new StupidFitxa(NEGRE, CAVALL_NEGRE), new StupidFitxa(NEGRE, ALFIL_NEGRE), new StupidFitxa(NEGRE, REINA_NEGRA), new Rei(NEGRE, false), new StupidFitxa(NEGRE, ALFIL_NEGRE), new StupidFitxa(NEGRE, CAVALL_NEGRE), new StupidFitxa(NEGRE, TORRE_NEGRA));
+            files [0] = new Array(new StupidFitxa(NEGRE, TORRE_NEGRA), new Cavall(NEGRE, false), new StupidFitxa(NEGRE, ALFIL_NEGRE), new StupidFitxa(NEGRE, REINA_NEGRA), new Rei(NEGRE, false), new StupidFitxa(NEGRE, ALFIL_NEGRE), new Cavall(NEGRE, false), new StupidFitxa(NEGRE, TORRE_NEGRA));
             files [1] = new Array(8).fill(0).map(() => new Peo(NEGRE, false));
             files [6] = new Array(8).fill(0).map(() => new Peo(BLANC, false));
-            files [7] = new Array(new StupidFitxa(BLANC, TORRE_BLANCA), new StupidFitxa(BLANC, CAVALL_BLANC), new StupidFitxa(BLANC, ALFIL_BLANC), new StupidFitxa(BLANC, REINA_BLANCA), new Rei(BLANC, false), new StupidFitxa(BLANC, ALFIL_BLANC), new StupidFitxa(BLANC, CAVALL_BLANC), new StupidFitxa(BLANC, TORRE_BLANCA));
+            files [7] = new Array(new StupidFitxa(BLANC, TORRE_BLANCA), new Cavall(BLANC, false), new StupidFitxa(BLANC, ALFIL_BLANC), new StupidFitxa(BLANC, REINA_BLANCA), new Rei(BLANC, false), new StupidFitxa(BLANC, ALFIL_BLANC), new Cavall(BLANC, false), new StupidFitxa(BLANC, TORRE_BLANCA));
             
             this.array = files;
         }else if(inicial instanceof Array){
@@ -35,19 +35,19 @@ class Taulell{
         }
     }
 
-    getFitxaEnPosicio(i, j){
-        if (i>7 || i<0 || j>7 || j<0){
-            throw "Posició "+i+", "+j+" invàlida"
+    getFitxaEnPosicio(inicialVerticalCoord, inicialHoritzontalCoord){
+        if (inicialVerticalCoord>7 ||inicialVerticalCoord <0 || inicialHoritzontalCoord>7 || inicialHoritzontalCoord<0){
+            throw "Posició "+i+", "+inicialHoritzontalCoord+" invàlida"
         }
-        return this.array[i][j];
+        return this.array[inicialVerticalCoord][inicialHoritzontalCoord];
     }
 
     getPosicioFitxa(fitxa){
         let posicio = new Array();
-        for (let i = 0; i<this.array.length; i++){
-            for (let j = 0; j<this.array[i].length; j++){
-                if (this.array[i][j].peça == fitxa){
-                    posicio.push(i, j);
+        for (let inicialVerticalCoord = 0;inicialVerticalCoord <this.array.length; inicialVerticalCoord ++){
+            for (let inicialHoritzontalCoord = 0; inicialHoritzontalCoord<this.array[inicialVerticalCoord].length; inicialHoritzontalCoord++){
+                if (this.array[inicialVerticalCoord][inicialHoritzontalCoord].peça == fitxa){
+                    posicio.push(inicialVerticalCoord, inicialHoritzontalCoord);
                 }
             }
         }
@@ -56,46 +56,47 @@ class Taulell{
 
     /* Retorna un nou taullel on una fitxa s'ha afegit a una posicio */
     /* FALTA OPTIMITZAR PER A AFEGIR MULTIPLES PECES*/
-    addFitxaEnPosicio(i, j, fitxa){
+    addFitxaEnPosicio(inicialVerticalCoord, inicialHoritzontalCoord, fitxa){
         if(fitxa.peça > 12 || fitxa.peça < 0){
-            throw "Fitxa a posar a "+i+ ", "+j+" no és vàlida: "+fitxa.peça
-        }else if (i>7 || i<0 || j>7 || j<0){
-            throw "Posició "+i+", "+j+" invàlida" 
+            throw "Fitxa a posar a "+inicialVerticalCoord + ", "+inicialHoritzontalCoord+" no és vàlida: "+fitxa.peça
+        }else if (inicialVerticalCoord>7 || inicialVerticalCoord <0 || inicialHoritzontalCoord>7 || inicialHoritzontalCoord<0){
+            throw "Posició "+i+", "+inicialHoritzontalCoord+" invàlida" 
         }
         let nouArray = new Array(8);
-        for (let i = 0; i<this.array.length; i++){
+        for (let inicialVerticalCoord = 0; inicialVerticalCoord <this.array.length; inicialVerticalCoord ++){
             let novaFila = new Array(8);
-            for (let j = 0; j<this.array[i].length; j++){
-                if (this.array[i][j] != BUIDA){
-                    novaFila[j] = this.array[i][j];
+            for (let inicialHoritzontalCoord = 0; inicialHoritzontalCoord<this.array[inicialVerticalCoord].length; inicialHoritzontalCoord++){
+                if (this.array[inicialVerticalCoord][inicialHoritzontalCoord] != BUIDA){
+                    novaFila[inicialHoritzontalCoord] = this.array[inicialVerticalCoord][inicialHoritzontalCoord];
                 }else{
-                    novaFila[j] = (BUIDA);
+                    novaFila[inicialHoritzontalCoord] = (BUIDA);
                 }   
             }
-            nouArray[i] = novaFila;
+            nouArray[inicialVerticalCoord] = novaFila;
         }
-        nouArray[i][j] = fitxa;
+        nouArray[inicialVerticalCoord][inicialHoritzontalCoord] = fitxa;
         return new Taulell(nouArray);
     }
 
     /* Retorna un nou taullel on una fitxa esta moguda a una nova posicio */
-    moveFitxaEnPosicio(i, j, x, y){
-        if(i>7 || i<0 || j>7 || j<0){
-            throw "Posició inicial "+i+", "+j+" invàlida"
-        }else if (x>7 || x<0 || y>7 || y<0){
-            throw "Posició final "+x+", "+y+" invàlida"
-        }else if (this.array[i][j]==BUIDA){
+    moveFitxaEnPosicio(inicialVerticalCoord, inicialHoritzontalCoord, finalVerticalCoord, finalHoritzontalCoord){
+        if(inicialVerticalCoord>7 || inicialVerticalCoord <0 || inicialHoritzontalCoord>7 || inicialHoritzontalCoord<0){
+            throw "Posició inicial "+inicialVerticalCoord+", "+inicialHoritzontalCoord+" invàlida"
+        }else if (finalHoritzontalCoord>7 || finalHoritzontalCoord<0 || finalVerticalCoord>7 || finalVerticalCoord<0){
+            throw "Posició final "+finalHoritzontalCoord+", "+finalVerticalCoord+" invàlida"
+        }else if (this.array[inicialVerticalCoord][inicialHoritzontalCoord]==BUIDA){
             throw "Casella buida"
         }
-        return this.addFitxaEnPosicio(x, y, this.getFitxaEnPosicio(i,j).cloneFitxa()).addFitxaEnPosicio(i, j, BUIDA);
+        let taulellMogut = this.addFitxaEnPosicio(finalVerticalCoord, finalHoritzontalCoord, this.getFitxaEnPosicio(inicialVerticalCoord,inicialHoritzontalCoord).cloneFitxa()).addFitxaEnPosicio(inicialVerticalCoord, inicialHoritzontalCoord, BUIDA);
+        return taulellMogut
     }
 
     getAllFitxaEnPosicio(){
         let pecesiPosicio = new Array();
-        for (let i = 0; i<this.array.length; i++){
-            for (let j = 0; j<this.array[i].length; j++){
-                if (this.array[i][j] != BUIDA){
-                    let PeçaiPosicio = new Array (this.array[i][j], i, j);
+        for (let inicialVerticalCoord = 0;inicialVerticalCoord <this.array.length;inicialVerticalCoord ++){
+            for (let inicialHoritzontalCoord = 0; inicialHoritzontalCoord<this.array[inicialVerticalCoord].length; inicialHoritzontalCoord++){
+                if (this.array[inicialVerticalCoord][inicialHoritzontalCoord] != BUIDA){
+                    let PeçaiPosicio = new Array (this.array[inicialVerticalCoord][inicialHoritzontalCoord], inicialVerticalCoord, inicialHoritzontalCoord);
                     pecesiPosicio.push(PeçaiPosicio);
                 }
             }

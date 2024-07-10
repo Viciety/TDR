@@ -1,10 +1,10 @@
 function LlistarMoviments(taulell, jugador){
     let PecesiPosicio = taulell.getAllFitxaEnPosicio()
     let TaulellsDespresMoviment = new Array()
-    for (let x = 0; x<PecesiPosicio.length; x++){
-        let peça = PecesiPosicio[x][0];
+    for (let z = 0; z<PecesiPosicio.length; z++){
+        let peça = PecesiPosicio[z][0];
         if(peça.color == jugador){
-            TaulellsDespresMoviment = TaulellsDespresMoviment.concat(peça.moves(PecesiPosicio[x][1], PecesiPosicio[x][2], taulell));
+            TaulellsDespresMoviment = TaulellsDespresMoviment.concat(peça.moves(PecesiPosicio[z][1], PecesiPosicio[z][2], taulell));
         }
     }
     //ComprovarMovimentsMoveFinder(TaulellsDespresMoviment);

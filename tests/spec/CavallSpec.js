@@ -13,10 +13,10 @@ describe('MoveKnower', function() {
         });
   
         it('ha de respectar el tipus de peça i el valor del constructor', function() {
-            expect(cavall_blanc.peça()).toEqual(CAVALL_BLANC);
-            expect(cavall_negre.peça()).toEqual(CAVALL_NEGRE);
-            expect(cavall_blanc.valor()).toEqual(3);
-            expect(cavall_negre.valor()).toEqual(-3);
+            expect(cavall_blanc.peça).toEqual(CAVALL_BLANC);
+            expect(cavall_negre.peça).toEqual(CAVALL_NEGRE);
+            expect(cavall_blanc.valor).toEqual(3);
+            expect(cavall_negre.valor).toEqual(-3);
         });
   
         it('ha de fallar la creacio si el jugador no és vàlid', function() {
@@ -36,7 +36,7 @@ describe('MoveKnower', function() {
         it("El movem i comprovem la posició", function(){
           let move = cavall_blanc.moves(4, 5, inicial)
           expect(move.length).toEqual(8)
-          expect(move[0].getAllFitxaEnPosicio()[0].peça).toEqual(CAVALL_BLANC);
+          expect(move[0].getAllFitxaEnPosicio()[0][0].peça).toEqual(CAVALL_BLANC    );
           expect(move[0].getFitxaEnPosicio(4, 5)).toEqual(BUIDA)
         });
       });

@@ -22,7 +22,7 @@ class Peo{
         return this.color
     }
 
-    moves(i, j, taulell){
+    moves(inicialVerticalCoord, inicialHoritzontalCoord, taulell){
         if (this.color == BLANC){
             var Vector1 = new Array(-1, 0, false);
             var Vector2 = new Array(-1, -1, true);
@@ -40,18 +40,18 @@ class Peo{
         }
         let PossiblesMovimentsPeo = new Array();
         for (let z = 0; z<LlistaVectors.length; z++){
-            let y = i + LlistaVectors[z][0];
-            let x = j + LlistaVectors[z][1];
-            if (y<0 || y>7 || x<0 || x>7){
+            let finalVerticalCoord = inicialVerticalCoord + LlistaVectors[z][0];
+            let finalHoritzontalCoord = inicialHoritzontalCoord + LlistaVectors[z][1];
+            if (finalVerticalCoord<0 || finalVerticalCoord>7 || finalHoritzontalCoord<0 || finalHoritzontalCoord>7){
                 continue;
             }else {
-                let fitxa = taulell.getFitxaEnPosicio(y,x);
+                let fitxa = taulell.getFitxaEnPosicio(finalVerticalCoord,finalHoritzontalCoord);
                 if(LlistaVectors[z][2] == false && fitxa == BUIDA){
-                    PossiblesMovimentsPeo.push(taulell.moveFitxaEnPosicio(i, j, y, x));
+                    PossiblesMovimentsPeo.push(taulell.moveFitxaEnPosicio(inicialVerticalCoord, inicialHoritzontalCoord, finalVerticalCoord, finalHoritzontalCoord));
                 }else if(LlistaVectors[z][2] == true && fitxa.color != this.color && fitxa != BUIDA){
-                    PossiblesMovimentsPeo.push(taulell.moveFitxaEnPosicio(i, j, y, x));
+                    PossiblesMovimentsPeo.push(taulell.moveFitxaEnPosicio(inicialVerticalCoord, inicialHoritzontalCoord, finalVerticalCoord, finalHoritzontalCoord));
                 }else if (LlistaVectors[z][2] == false && this.preMoves == false && fitxa == BUIDA){
-                    PossiblesMovimentsPeo.push(taulell.moveFitxaEnPosicio(i, j, y, x));
+                    PossiblesMovimentsPeo.push(taulell.moveFitxaEnPosicio(inicialVerticalCoord, inicialHoritzontalCoord, finalVerticalCoord, finalHoritzontalCoord));
                 }
             } 
         }

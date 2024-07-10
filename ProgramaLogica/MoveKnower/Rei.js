@@ -20,7 +20,7 @@ class Rei{
         return this.color;
     }
 
-    moves(i, j, taulell){
+    moves(inicialVerticalCoord, inicialHoritzontalCoord, taulell){
         let Vector1 = new Array(1, 0);
         let Vector2 = new Array(1, 1);
         let Vector3 = new Array(0, 1);
@@ -32,14 +32,14 @@ class Rei{
         let LlistaVectors = new Array(Vector1, Vector2, Vector3, Vector4, Vector5, Vector6, Vector7, Vector8);
         let PossiblesMovimentsRei = new Array();
         for (let z = 0; z<LlistaVectors.length; z++){
-            let y = i + LlistaVectors[z][0];
-            let x = j + LlistaVectors[z][1];
-            if (y<0 || y>7 || x<0 || x>7){
+            let finalVerticalCoord = inicialVerticalCoord + LlistaVectors[z][0];
+            let finalHoritzontalCoord = inicialHoritzontalCoord + LlistaVectors[z][1];
+            if (finalVerticalCoord<0 || finalVerticalCoord>7 || finalHoritzontalCoord<0 || finalHoritzontalCoord>7){
                 continue;
             }else {
-                let fitxa = taulell.getFitxaEnPosicio(y,x);
+                let fitxa = taulell.getFitxaEnPosicio(finalVerticalCoord,finalHoritzontalCoord);
                 if(fitxa == BUIDA || fitxa.color != this.color){
-                    PossiblesMovimentsRei.push(taulell.moveFitxaEnPosicio(i, j, y, x));
+                    PossiblesMovimentsRei.push(taulell.moveFitxaEnPosicio(inicialVerticalCoord, inicialHoritzontalCoord, finalVerticalCoord, finalHoritzontalCoord));
                 }
             } 
         }

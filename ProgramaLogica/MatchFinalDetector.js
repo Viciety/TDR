@@ -3,11 +3,11 @@ function ScanCheckmate(taulell, jugador){
     let MovimentsTotals = LlistarMoviments(taulell, jugador);
     let MovimentsValids = new Array();
     if (ScanCheck(taulell, jugador) == true){
-        for (let i = 0; i<MovimentsTotals.length; i++){
-            if (ScanCheck(MovimentsTotals[i], jugador) == true){
+        for (let inicialVerticalCoord  = 0; inicialVerticalCoord <MovimentsTotals.length; inicialVerticalCoord++){
+            if (ScanCheck(MovimentsTotals[inicialVerticalCoord], jugador) == true){
                 continue;
             }else{
-                MovimentsValids.push(MovimentsTotals[i]);
+                MovimentsValids.push(MovimentsTotals[inicialVerticalCoord]);
             }
         }
         if (MovimentsValids.length == 0){
@@ -28,8 +28,8 @@ function ScanCheck(taulell, jugador){
     }
     let check = false;
     let MovimentsTotals = LlistarMoviments(taulell, !jugador);
-    for (let i = 0; i<MovimentsTotals.length; i++){
-        if (MovimentsTotals[i].getFitxaEnPosicio(posicioRei[0], posicioRei[1]).peça != Rei && MovimentsTotals[i].getFitxaEnPosicio(posicioRei[0], posicioRei[1]).peça != BUIDA){
+    for (let inicialVerticalCoord = 0; inicialVerticalCoord<MovimentsTotals.length; inicialVerticalCoord++){
+        if (MovimentsTotals[inicialVerticalCoord].getFitxaEnPosicio(posicioRei[0], posicioRei[1]).peça != Rei && MovimentsTotals[inicialVerticalCoord].getFitxaEnPosicio(posicioRei[0], posicioRei[1]).peça != BUIDA){
             check = true;
         }
     }
@@ -41,11 +41,11 @@ function ScanStalemate(taulell, jugador){
     let MovimentsTotals = LlistarMoviments(taulell, jugador);
     let MovimentsValids = new Array();
     if (ScanCheck(taulell, jugador) == false){
-        for (let i = 0; i<MovimentsTotals.length; i++){
-            if (ScanCheck(MovimentsTotals[i], jugador) == true){
+        for (let inicialVerticalCoord = 0; inicialVerticalCoord<MovimentsTotals.length; inicialVerticalCoord++){
+            if (ScanCheck(MovimentsTotals[inicialVerticalCoord], jugador) == true){
                 continue;
             }else{
-                MovimentsValids.push(MovimentsTotals[i]);
+                MovimentsValids.push(MovimentsTotals[inicialVerticalCoord]);
             }
         }
         if (MovimentsValids.length == 0){
