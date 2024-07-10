@@ -19,7 +19,7 @@ describe('MoveChooser', function() {
 
     });
 
-    describe('Ara amb esl taulells proporcionats pel LlistarMoviment', function() {
+    describe('Ara amb els taulells proporcionats pel LlistarMoviment', function() {
         
         let seguentTaulell = new Taulell(true)
         let jugador = BLANC;
@@ -27,13 +27,26 @@ describe('MoveChooser', function() {
         it('Ha de triar un només i no ha de ser undefined en 50 vegades', function() {
             let results = new Array();
             for (let z = 0; z<900; z++){
-                seguentTaulell = TriarMoviment(LlistarMoviments(seguentTaulell, jugador), jugador);
+                let moviments = LlistarMoviments(seguentTaulell, jugador);
+                let movimentTriat = TriarMoviment(moviments, jugador);
+                if(movimentTriat == undefined){
+                    /*
+                    console.log("Moviment Triat: ");
+                    console.log(movimentTriat);
+                    console.log("Moviments Possibles:");
+                    console.log(moviments);
+                    console.log("Moviment Anterior:");
+                    console.log(seguentTaulell);
+                    */
+                    break;
+                }
+                seguentTaulell = movimentTriat;
                 results.push(seguentTaulell);
                 jugador = (jugador == BLANC) ? NEGRE : BLANC;
             }
             let definedResults = results.filter((r) => r != undefined);
 
-            expect(definedResults.length).toEqual(50);
+            expect(definedResults.length).toEqual(900);
         });
 
     });

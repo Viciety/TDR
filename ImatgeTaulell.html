@@ -34,7 +34,7 @@
             
             let jugador = BLANC;
             let seguentTaulell= inicial;
-            for (let moviments = 0; moviments<50; moviments++){
+            for (let moviments = 0; moviments<100; moviments++){
                 seguentTaulell = TriarMoviment(LlistarMoviments(seguentTaulell, jugador), jugador);
                 if (seguentTaulell == undefined){
                     throw "seguentTaulell is undefined a l'HTML. Iteració "+(moviments+1);

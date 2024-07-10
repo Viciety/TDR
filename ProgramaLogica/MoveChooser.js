@@ -5,8 +5,13 @@ function getRandomInt(min, max) {
 }
 function TriarMoviment(PossiblesMoviments, jugador){
     let PossiblesMovimentsValids = PossiblesMoviments.filter((possibleTaulell) => !ScanCheck(possibleTaulell, jugador));
-    let moviment = PossiblesMovimentsValids[getRandomInt(0, PossiblesMoviments.length-1)];
-    //ComprovarMovimentsMoveChooser(PossiblesMovimentsValids);
+    let numero = getRandomInt(0, PossiblesMovimentsValids.length-1)
+    let moviment = PossiblesMovimentsValids[numero];
+    /*
+    ComprovarMovimentsMoveChooser(PossiblesMovimentsValids);
+    console.log(numero);
+    console.log(moviment);
+    */
     return moviment
 }
 /*
