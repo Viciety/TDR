@@ -13,15 +13,15 @@ describe('MoveKnower', function() {
         });
   
         it('ha de respectar el tipus de peça i el valor del constructor', function() {
-            expect(cavall_blanc.peça).toEqual(CAVALL_BLANC);
-            expect(cavall_negre.peça).toEqual(CAVALL_NEGRE);
-            expect(cavall_blanc.valor).toEqual(3);
-            expect(cavall_negre.valor).toEqual(-3);
+          expect(cavall_blanc.peça).toEqual(CAVALL_BLANC);
+          expect(cavall_negre.peça).toEqual(CAVALL_NEGRE);
+          expect(cavall_blanc.valor).toEqual(3);
+          expect(cavall_negre.valor).toEqual(-3);
         });
   
         it('ha de fallar la creacio si el jugador no és vàlid', function() {
           expect(function() {
-            let peo = new Cavall("blabla");
+            let cavall = new Cavall("blabla");
           }).toThrow('Color no vàlid: blabla');
         });
       });

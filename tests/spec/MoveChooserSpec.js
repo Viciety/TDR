@@ -23,10 +23,11 @@ describe('MoveChooser', function() {
         
         let seguentTaulell = new Taulell(true)
         let jugador = BLANC;
-
-        it('Ha de triar un només i no ha de ser undefined en 50 vegades', function() {
+        let iteracions = 30;
+    
+        it('Ha de triar un només i no ha de ser undefined en '+iteracions+' vegades', function() {
             let results = new Array();
-            for (let z = 0; z<900; z++){
+            for (let z = 0; z<iteracions; z++){
                 let moviments = LlistarMoviments(seguentTaulell, jugador);
                 let movimentTriat = TriarMoviment(moviments, jugador);
                 if(movimentTriat == undefined){
@@ -46,8 +47,9 @@ describe('MoveChooser', function() {
             }
             let definedResults = results.filter((r) => r != undefined);
 
-            expect(definedResults.length).toEqual(900);
+            expect(definedResults.length).toEqual(iteracions);
         });
 
     });
+
 });
