@@ -55,8 +55,8 @@ describe('MoveKnower', function() {
                 let moviments = alfil_blanc.moves(4, 5, inicial)
                 expect(moviments.length).toEqual(7);
                 expect(moviments.filter((posicio) => Math.abs(posicio.getAllFitxaEnPosicio().filter((arr) => 
-                    arr[0].peça == alfil_blanc)[0][1]-4) == Math.abs(posicio.getAllFitxaEnPosicio().filter((arr) => 
-                        arr[0].peça == alfil_blanc)[0][2]-5)).length).toEqual(7);
+                    arr[0].peça == alfil_blanc.peça)[0][1]-4) == Math.abs(posicio.getAllFitxaEnPosicio().filter((arr) => 
+                        arr[0].peça == alfil_blanc.peça)[0][2]-5)).length).toEqual(7);
                 ;
             });
             it("El nombre s'ha de reduir en 2 si hi afegim dues fitxes negres", function(){
@@ -65,8 +65,8 @@ describe('MoveKnower', function() {
                 let moviments = alfil_blanc.moves(4, 5, inicial)
                 expect(moviments.length).toEqual(9);
                 expect(moviments.filter((posicio) => Math.abs(posicio.getAllFitxaEnPosicio().filter((arr) => 
-                    arr[0].peça == alfil_blanc)[0][1]-4) == Math.abs(posicio.getAllFitxaEnPosicio().filter((arr) => 
-                        arr[0].peça == alfil_blanc)[0][2]-5)).length).toEqual(9);
+                    arr[0].peça == alfil_blanc.peça)[0][1]-4) == Math.abs(posicio.getAllFitxaEnPosicio().filter((arr) => 
+                        arr[0].peça == alfil_blanc.peça)[0][2]-5)).length).toEqual(9);
                 ;
             });
         });

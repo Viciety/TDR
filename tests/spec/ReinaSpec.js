@@ -46,12 +46,12 @@ describe('MoveKnower', function() {
                 let inicial = new Taulell()
                     .addFitxaEnPosicio(4, 5, reina_blanca);
                 let moviments = reina_blanca.moves(4, 5, inicial)
-                expect(moviments.length).toEqual(22);
+                expect(moviments.length).toEqual(25);
                 expect(moviments.filter((posicio) => posicio.getAllFitxaEnPosicio()[0][1] == 4).length).toEqual(7);
                 expect(moviments.filter((posicio) => posicio.getAllFitxaEnPosicio()[0][2] == 5).length).toEqual(7);
                 expect(moviments.filter((posicio) => Math.abs(posicio.getAllFitxaEnPosicio().filter((arr) => 
-                    arr[0].peça == reina_blanca)[0][1]-4) == Math.abs(posicio.getAllFitxaEnPosicio().filter((arr) => 
-                        arr[0].peça == reina_blanca)[0][2]-5)).length).toEqual(11);
+                    arr[0].peça == reina_blanca.peça)[0][1]-4) == Math.abs(posicio.getAllFitxaEnPosicio().filter((arr) => 
+                        arr[0].peça == reina_blanca.peça)[0][2]-5)).length).toEqual(11);
             });
             it("El nombre s'ha de reduir en 3 si hi afegim una fitxa blanca a 3 caselles de la vora", function(){
                 let inicial = new Taulell()
@@ -62,15 +62,13 @@ describe('MoveKnower', function() {
                     .addFitxaEnPosicio(6, 3, new Peo(BLANC, true));
                 let moviments = reina_blanca.moves(4, 5, inicial)
                 expect(moviments.length).toEqual(15);
-                expect(moviments.filter((taulell) => 
-                    taulell.getAllFitxaEnPosicio().filter((arr) => 
-                        arr[0].peça == reina_blanca)[0][1] == 4).length).toEqual(4);
-                expect(moviments.filter((taulell) => 
-                    taulell.getAllFitxaEnPosicio().filter((arr) => 
-                        arr[0].peça == reina_blanca)[0][2] == 5).length).toEqual(4);
+                expect(moviments.filter((taulell) => taulell.getAllFitxaEnPosicio().filter((arr) => 
+                    arr[0].peça == reina_blanca.peça)[0][1] == 4).length).toEqual(4);
+                expect(moviments.filter((taulell) => taulell.getAllFitxaEnPosicio().filter((arr) => 
+                    arr[0].peça == reina_blanca.peça)[0][2] == 5).length).toEqual(4);
                 expect(moviments.filter((posicio) => Math.abs(posicio.getAllFitxaEnPosicio().filter((arr) => 
-                    arr[0].peça == reina_blanca)[0][1]-4) == Math.abs(posicio.getAllFitxaEnPosicio().filter((arr) => 
-                        arr[0].peça == reina_blanca)[0][2]-5)).length).toEqual(7);
+                    arr[0].peça == reina_blanca.peça)[0][1]-4) == Math.abs(posicio.getAllFitxaEnPosicio().filter((arr) => 
+                        arr[0].peça == reina_blanca.peça)[0][2]-5)).length).toEqual(7);
             });
             it("El nombre s'ha de reduir en 2 si hi afegim una fitxa negre a 3 caselles de la vora", function(){
                 let inicial = new Taulell()
@@ -83,13 +81,13 @@ describe('MoveKnower', function() {
                 expect(moviments.length).toEqual(19);
                 expect(moviments.filter((taulell) => 
                     taulell.getAllFitxaEnPosicio().filter((arr) => 
-                        arr[0].peça == reina_blanca)[0][1] == 4).length).toEqual(5);
+                        arr[0].peça == reina_blanca.peça)[0][1] == 4).length).toEqual(5);
                 expect(moviments.filter((taulell) => 
                     taulell.getAllFitxaEnPosicio().filter((arr) => 
-                        arr[0].peça == reina_blanca)[0][2] == 5).length).toEqual(5);
+                        arr[0].peça == reina_blanca.peça)[0][2] == 5).length).toEqual(5);
                 expect(moviments.filter((posicio) => Math.abs(posicio.getAllFitxaEnPosicio().filter((arr) => 
-                    arr[0].peça == reina_blanca)[0][1]-4) == Math.abs(posicio.getAllFitxaEnPosicio().filter((arr) => 
-                        arr[0].peça == reina_blanca)[0][2]-5)).length).toEqual(9);
+                    arr[0].peça == reina_blanca.peça)[0][1]-4) == Math.abs(posicio.getAllFitxaEnPosicio().filter((arr) => 
+                        arr[0].peça == reina_blanca.peça)[0][2]-5)).length).toEqual(9);
             });
         });
       
