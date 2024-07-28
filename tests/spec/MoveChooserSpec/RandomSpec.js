@@ -1,4 +1,5 @@
-describe('MoveChooser', function() {
+describe('Random MoveChooser', function() {
+    let moveChooser = new RandomMoveChooser();
     describe('Té un sol moviment i ha de tornar aquest', function() {
         
         let taulellAmbRei = new Taulell()
@@ -9,7 +10,7 @@ describe('MoveChooser', function() {
         it('Ha de triar un només i no ha de ser undefined en 50 vegades', function() {
             let results = new Array();
             for (let z = 0; z<50; z++){
-                results.push(TriarMoviment(PossiblesMoviments, jugador));
+                results.push(moveChooser.chooseMove(PossiblesMoviments, jugador));
             }
             let definedResults = results.filter((r) => r != undefined);
 
@@ -29,7 +30,7 @@ describe('MoveChooser', function() {
             let results = new Array();
             for (let z = 0; z<iteracions; z++){
                 let moviments = LlistarMoviments(seguentTaulell, jugador);
-                let movimentTriat = TriarMoviment(moviments, jugador);
+                let movimentTriat = moveChooser.chooseMove(moviments, jugador);
                 if(movimentTriat == undefined){
                     /*
                     console.log("Moviment Triat: ");
