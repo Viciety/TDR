@@ -8,7 +8,7 @@ class ScoreMoveChooser{
     }
 
     chooseMove(PossiblesMoviments, jugador){
-        if (PossiblesMoviments.lenght <= 0){
+        if (PossiblesMoviments.length <= 0){
             throw "Cap possible moviment";
         }
         let movimentsPuntuats = PossiblesMoviments.map((mov) => new Array (mov, this.scorer.scoreBoard(mov, jugador)));
@@ -25,9 +25,7 @@ class ScoreMoveChooser{
             },
             new Array (movimentsPuntuats[0]),
         );
-        let num1 = millors.length;
-        let num = getRandomInt(0, num1-1);
-        return millors[num][0];
+        return millors[getRandomInt(0, millors.length-1)][0];
     }
 
 }
