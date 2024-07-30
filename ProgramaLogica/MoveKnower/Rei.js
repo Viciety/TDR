@@ -10,6 +10,7 @@ class Rei{
         }else{
             throw "Color no vàlid: "+color;
         }
+        this.valor = 0;
     }
 
     cloneFitxa(){

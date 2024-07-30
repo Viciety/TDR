@@ -1,6 +1,5 @@
 class RandomMoveChooser{
     constructor(){
-        this.elo = 0;
     }
 
     chooseMove(PossiblesMoviments, jugador){
