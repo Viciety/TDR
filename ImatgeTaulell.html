@@ -20,6 +20,8 @@
         <script type="text/javascript" src="TaulellOrdinador.js"></script>
         <script type="text/javascript" src="ProgramaLogica/MoveChooser/RandomChooser.js"></script>
         <script type="text/javascript" src="ProgramaLogica/MoveChooser/ScoreChooser.js"></script>
+        <script type="text/javascript" src="ProgramaLogica/MoveChooser/ComposedScorer.js"></script>
+        <script type="text/javascript" src="ProgramaLogica/MoveChooser/DeepScorer.js"></script>
         <script type="text/javascript" src="ProgramaLogica/MoveFinder.js"></script>
         <script type="text/javascript" src="ProgramaLogica/MoveKnower/Cavall.js"></script>
         <script type="text/javascript" src="ProgramaLogica/MoveKnower/Peó.js"></script>
@@ -34,8 +36,9 @@
         <script type="text/javascript" src="ProgramaLogica/MoveChooser/MoveScorer/Scorer.js"></script>
         <script type="text/javascript">
 
-            let scorer = new MaterialAdvantatgeScorer(100);
-            let moveChooser = new ScoreMoveChooser(scorer);
+            let scorers = new Array (new Array (new MaterialAdvantatgeScorer(), 10), new Array (new CheckmateScorer(), 10000))
+            let score = new ComposedScorer(scorers)
+            let moveChooser = new ScoreMoveChooser(score);
             let inicial = new Taulell(true);
 
             DibuixarTaulell(inicial);
@@ -51,11 +54,11 @@
                     throw "seguentTaulell is undefined a l'HTML. Iteració "+(moviments+1);
                 }
                 DibuixarTaulell(seguentTaulell);
-                if (ScanCheckmate(seguentTaulell, jugador) == true){
-                    document.write("Ha guanyat el jugador "+!jugador+"!");
+                if (ScanCheckmate(seguentTaulell, !jugador)){
+                    document.write("Ha guanyat el jugador "+jugador+"!");
                     break;
                 }
-                if (ScanStalemate(seguentTaulell, jugador) == true){
+                if (ScanStalemate(seguentTaulell, jugador)){
                     document.write("Taules per rei ofegat");
                     break;
                 }

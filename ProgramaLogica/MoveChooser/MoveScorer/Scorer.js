@@ -1,12 +1,8 @@
 class CheckmateScorer{
-    constructor(checkmateScore){
-        this.checkmateScore = checkmateScore;
-    }
-
+    
     scoreBoard(taulell, jugador){
-        let checkmateScore = this.checkmateScore
-        if(ScanCheck(taulell, !jugador)){
-            return checkmateScore;
+        if(ScanCheckmate(taulell, !jugador)){
+            return 1;
         }else{
             return 0;
         }

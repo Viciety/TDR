@@ -1,4 +1,4 @@
-describe('CheckmateScorer', function() {
+describe('MaterialAdvantatgeScorer', function() {
 
     describe("Amb l'SpecScorer", function() {
 
@@ -9,10 +9,10 @@ describe('CheckmateScorer', function() {
         let taulell2 = new Taulell()
             .addFitxaEnPosicio(4, 4, new Rei(BLANC, false))
             .addFitxaEnPosicio(0, 5, new Rei(NEGRE, false));
-        let scorer = new CheckmateScorer(1);
+        let scorer = new MaterialAdvantatgeScorer();
 
         it('Ha de tornar el primer, que és el que esta en checkmate', function() {
-            expect(scorer.scoreBoard(taulell1, BLANC)).toEqual(1);
+            expect(scorer.scoreBoard(taulell1, BLANC)).toEqual(9);
             expect(scorer.scoreBoard(taulell2, BLANC)).toEqual(0);
         });
 
