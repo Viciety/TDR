@@ -46,7 +46,7 @@
             
             let jugador = BLANC;
             let seguentTaulell= inicial;
-            for (let moviments = 0; moviments<100; moviments++){
+            for (let moviments = 0; moviments<300; moviments++){
                 let PossiblesMoviments = LlistarMoviments(seguentTaulell, jugador);
                 let PossiblesMovimentsValids = PossiblesMoviments.filter((possibleTaulell) => !ScanCheck(possibleTaulell, jugador));
                 seguentTaulell = moveChooser.chooseMove(PossiblesMovimentsValids, jugador);

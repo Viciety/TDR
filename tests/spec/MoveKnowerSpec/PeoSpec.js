@@ -74,5 +74,15 @@ describe('MoveKnower', function() {
         expect(taulells.length).toEqual(1);
       });
     });
+    describe("Promotion", function() {
+      let peo_blanc = new Peo(BLANC, true, false);      
+      let taulell_blanc = new Taulell()
+        .addFitxaEnPosicio(1,4,peo_blanc);
+      it("Ha de tornar un taulell sense peo", function(){
+        let taulells = peo_blanc.moves(1,4, taulell_blanc, false)
+        expect(taulells.length).toEqual(4)
+        expect(taulells.every((mov) => mov.getFitxaEnPosicio(0, 4).peça != PEO_BLANC && mov.getFitxaEnPosicio(0, 4).peça != undefined)).toEqual(true);
+      });
+    });
   });
 });

@@ -27,6 +27,24 @@ class Peo{
         return this.color
     }
 
+    promotion(inicialVerticalCoord, inicialHoritzontalCoord, finalVerticalCoord, finalHoritzontalCoord, taulell){
+        let PossiblesMovimentsPeo = new Array()
+        PossiblesMovimentsPeo.push(taulell
+            .addFitxaEnPosicio(inicialVerticalCoord, inicialHoritzontalCoord, BUIDA)
+            .addFitxaEnPosicio(finalVerticalCoord, finalHoritzontalCoord, new Reina(this.color, true)));
+        PossiblesMovimentsPeo.push(taulell
+            .addFitxaEnPosicio(inicialVerticalCoord, inicialHoritzontalCoord, BUIDA)
+            .addFitxaEnPosicio(finalVerticalCoord, finalHoritzontalCoord, new Torre(this.color, true)));
+        PossiblesMovimentsPeo.push(taulell
+            .addFitxaEnPosicio(inicialVerticalCoord, inicialHoritzontalCoord, BUIDA)
+            .addFitxaEnPosicio(finalVerticalCoord, finalHoritzontalCoord, new Alfil(this.color, true)));
+        PossiblesMovimentsPeo.push(taulell
+            .addFitxaEnPosicio(inicialVerticalCoord, inicialHoritzontalCoord, BUIDA)
+            .addFitxaEnPosicio(finalVerticalCoord, finalHoritzontalCoord, new Cavall(this.color, true)));
+        console.log("Promotion available")
+        return PossiblesMovimentsPeo
+    }
+
     moves(inicialVerticalCoord, inicialHoritzontalCoord, taulell, nomesMenjant){
         if(nomesMenjant != true) nomesMenjant = false;
         this.passant = false;
@@ -54,12 +72,20 @@ class Peo{
             let finalHoritzontalCoord = inicialHoritzontalCoord + LlistaVectors[z][1];
             if (finalVerticalCoord<0 || finalVerticalCoord>7 || finalHoritzontalCoord<0 || finalHoritzontalCoord>7){
                 continue;
-            }else {
+            }else{
                 let fitxa = taulell.getFitxaEnPosicio(finalVerticalCoord,finalHoritzontalCoord);
                 if(LlistaVectors[z][2] == false && fitxa == BUIDA){
-                    PossiblesMovimentsPeo.push(taulell.moveFitxaEnPosicio(inicialVerticalCoord, inicialHoritzontalCoord, finalVerticalCoord, finalHoritzontalCoord));
+                    if (finalVerticalCoord == 0 && this.color || finalVerticalCoord == 7 && !this.color){
+                        PossiblesMovimentsPeo = PossiblesMovimentsPeo.concat(this.promotion(inicialVerticalCoord, inicialHoritzontalCoord, finalVerticalCoord, finalHoritzontalCoord, taulell));
+                    }else{
+                        PossiblesMovimentsPeo.push(taulell.moveFitxaEnPosicio(inicialVerticalCoord, inicialHoritzontalCoord, finalVerticalCoord, finalHoritzontalCoord));
+                    }
                 }else if(LlistaVectors[z][2] == true && fitxa.color != this.color && fitxa != BUIDA){
-                    PossiblesMovimentsPeo.push(taulell.moveFitxaEnPosicio(inicialVerticalCoord, inicialHoritzontalCoord, finalVerticalCoord, finalHoritzontalCoord));
+                    if (finalVerticalCoord == 0 && this.color || finalVerticalCoord == 7 && !this.color){
+                        PossiblesMovimentsPeo = PossiblesMovimentsPeo.concat(this.promotion(inicialVerticalCoord, inicialHoritzontalCoord, finalVerticalCoord, finalHoritzontalCoord, taulell));
+                    }else{
+                        PossiblesMovimentsPeo.push(taulell.moveFitxaEnPosicio(inicialVerticalCoord, inicialHoritzontalCoord, finalVerticalCoord, finalHoritzontalCoord));
+                    }
                 }else if (LlistaVectors[z][2] == false && this.preMoves == false && fitxa == BUIDA){
                     let moviment = taulell.moveFitxaEnPosicio(inicialVerticalCoord, inicialHoritzontalCoord, finalVerticalCoord, finalHoritzontalCoord).addFitxaEnPosicio(finalVerticalCoord, finalHoritzontalCoord, new Peo(this.color, true, true));
                     PossiblesMovimentsPeo.push(moviment)
