@@ -6,7 +6,7 @@ describe('MatchFinalDetector', function() {
         
             let taulellAmbPeo = new Taulell()
             .addFitxaEnPosicio(4, 5, new Rei(NEGRE, true))
-            .addFitxaEnPosicio(5, 6, new Peo(BLANC, true))
+            .addFitxaEnPosicio(5, 6, new Peo(BLANC, true, false))
             .addFitxaEnPosicio(7, 7, new Rei(BLANC, true));
   
             it('Ha de tornar true si li toca al negre', function() {
@@ -18,7 +18,7 @@ describe('MatchFinalDetector', function() {
         
             let taulellAmbPeo = new Taulell()
             .addFitxaEnPosicio(4, 5, new Rei(NEGRE, true))
-            .addFitxaEnPosicio(5, 5, new Peo(BLANC, true))
+            .addFitxaEnPosicio(5, 5, new Peo(BLANC, true, false))
             .addFitxaEnPosicio(7, 7, new Rei(BLANC, true));
   
             it('Ha de tornar false si li toca al blanc', function() {
@@ -30,8 +30,8 @@ describe('MatchFinalDetector', function() {
         
             let taulellAmbPeo = new Taulell()
                 .addFitxaEnPosicio(4, 5, new Rei(NEGRE, true))
-                .addFitxaEnPosicio(3, 6, new Peo(NEGRE, true))
-                .addFitxaEnPosicio(3, 4, new Peo(NEGRE, true))
+                .addFitxaEnPosicio(3, 6, new Peo(NEGRE, true, false))
+                .addFitxaEnPosicio(3, 4, new Peo(NEGRE, true, false))
                 .addFitxaEnPosicio(7, 7, new Rei(BLANC, true));
             it('Ha de tornar false si li toca al negre', function() {
             expect(ScanCheck(taulellAmbPeo, NEGRE)).toEqual(false);
@@ -45,10 +45,10 @@ describe('MatchFinalDetector', function() {
         
             let taulellAmbPeo = new Taulell()
                 .addFitxaEnPosicio(0, 7, new Rei(NEGRE, true))
-                .addFitxaEnPosicio(1, 6, new Peo(BLANC, true))
-                .addFitxaEnPosicio(2, 6, new Peo(BLANC, true))
-                .addFitxaEnPosicio(2, 5, new Peo(BLANC, true))
-                .addFitxaEnPosicio(1, 5, new Peo(BLANC, true));
+                .addFitxaEnPosicio(1, 6, new Peo(BLANC, true, false))
+                .addFitxaEnPosicio(2, 6, new Peo(BLANC, true, false))
+                .addFitxaEnPosicio(2, 5, new Peo(BLANC, true, false))
+                .addFitxaEnPosicio(1, 5, new Peo(BLANC, true, false));
   
             it('Ha de tornar true si li toca al negre', function() {
             expect(ScanCheckmate(taulellAmbPeo, NEGRE)).toEqual(true);
@@ -59,7 +59,7 @@ describe('MatchFinalDetector', function() {
         
             let taulellAmbPeo = new Taulell()
                 .addFitxaEnPosicio(4, 5, new Rei(NEGRE, true))
-                .addFitxaEnPosicio(5, 5, new Peo(BLANC, true));
+                .addFitxaEnPosicio(5, 5, new Peo(BLANC, true, false));
   
             it('Ha de tornar false si li toca al negre', function() {
             expect(ScanCheckmate(taulellAmbPeo, NEGRE)).toEqual(false);
@@ -69,10 +69,10 @@ describe('MatchFinalDetector', function() {
         describe('Exemple3: Taulell amb rei i peons amenaçadors del mateix color en checkmate', function() {
             let taulellAmbPeo = new Taulell()
                 .addFitxaEnPosicio(4, 5, new Rei(NEGRE, true))
-                .addFitxaEnPosicio(1, 6, new Peo(NEGRE, true))
-                .addFitxaEnPosicio(2, 6, new Peo(NEGRE, true))
-                .addFitxaEnPosicio(2, 5, new Peo(NEGRE, true))
-                .addFitxaEnPosicio(1, 5, new Peo(NEGRE, true));
+                .addFitxaEnPosicio(1, 6, new Peo(NEGRE, true, false))
+                .addFitxaEnPosicio(2, 6, new Peo(NEGRE, true, false))
+                .addFitxaEnPosicio(2, 5, new Peo(NEGRE, true, false))
+                .addFitxaEnPosicio(1, 5, new Peo(NEGRE, true, false));
   
             it('Ha de tornar false si li toca al negre', function() {
             expect(ScanCheckmate(taulellAmbPeo, NEGRE)).toEqual(false);
@@ -86,9 +86,9 @@ describe('MatchFinalDetector', function() {
         
             let taulellAmbPeo = new Taulell()
                 .addFitxaEnPosicio(0, 7, new Rei(NEGRE, true))
-                .addFitxaEnPosicio(2, 6, new Peo(BLANC, true))
-                .addFitxaEnPosicio(2, 5, new Peo(BLANC, true))
-                .addFitxaEnPosicio(1, 5, new Peo(BLANC, true));
+                .addFitxaEnPosicio(2, 6, new Peo(BLANC, true, false))
+                .addFitxaEnPosicio(2, 5, new Peo(BLANC, true, false))
+                .addFitxaEnPosicio(1, 5, new Peo(BLANC, true, false));
   
             it('Ha de tornar true si li toca al negre', function() {
             expect(ScanStalemate(taulellAmbPeo, NEGRE)).toEqual(true);
@@ -99,9 +99,9 @@ describe('MatchFinalDetector', function() {
         
             let taulellAmbPeo = new Taulell()
                 .addFitxaEnPosicio(0, 7, new Rei(NEGRE, true))
-                .addFitxaEnPosicio(1, 6, new Peo(BLANC, true))
-                .addFitxaEnPosicio(2, 6, new Peo(BLANC, true))
-                .addFitxaEnPosicio(1, 5, new Peo(BLANC, true));
+                .addFitxaEnPosicio(1, 6, new Peo(BLANC, true, false))
+                .addFitxaEnPosicio(2, 6, new Peo(BLANC, true, false))
+                .addFitxaEnPosicio(1, 5, new Peo(BLANC, true, false));
                 
             it('Ha de tornar false si li toca al negre perquè pot menjar', function() {
             expect(ScanCheckmate(taulellAmbPeo, NEGRE)).toEqual(false);
@@ -111,8 +111,8 @@ describe('MatchFinalDetector', function() {
         describe('Exemple3: Taulell amb rei i peons amenaçadors del mateix color però es pot escapar', function() {
             let taulellAmbPeo = new Taulell()
                 .addFitxaEnPosicio(0, 7, new Rei(NEGRE, true))
-                .addFitxaEnPosicio(2, 6, new Peo(BLANC, true))
-                .addFitxaEnPosicio(1, 5, new Peo(BLANC, true));
+                .addFitxaEnPosicio(2, 6, new Peo(BLANC, true, false))
+                .addFitxaEnPosicio(1, 5, new Peo(BLANC, true, false));
   
             it('Ha de tornar false si li toca al negre peruquè es pot escapar', function() {
             expect(ScanCheckmate(taulellAmbPeo, NEGRE)).toEqual(false);

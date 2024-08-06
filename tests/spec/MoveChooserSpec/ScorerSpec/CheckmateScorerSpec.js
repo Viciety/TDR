@@ -9,7 +9,7 @@ describe('CheckmateScorer', function() {
         let taulell2 = new Taulell()
             .addFitxaEnPosicio(4, 4, new Rei(BLANC, false))
             .addFitxaEnPosicio(0, 5, new Rei(NEGRE, false));
-        let scorer = new CheckmateScorer(1);
+        let scorer = new CheckmateScorer();
 
         it('Ha de tornar el primer, que és el que esta en checkmate', function() {
             expect(scorer.scoreBoard(taulell1, BLANC)).toEqual(1);

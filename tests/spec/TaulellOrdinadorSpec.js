@@ -1,7 +1,7 @@
 describe('Un Taulell', function() {
 
     describe('Al afegir fitxa', function() {
-        let peo_blanc = new Peo(BLANC, true);
+        let peo_blanc = new Peo(BLANC, true, false);
         let peo_negre = new Peo(NEGRE, false);
         let inicial = new Taulell()
             .addFitxaEnPosicio(4, 5, peo_blanc);

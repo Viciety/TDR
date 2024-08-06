@@ -25,8 +25,8 @@ class Taulell{
             this.array = files;
         }else if (typeof(inicial) == 'boolean'){ 
             files [0] = new Array(new Torre(NEGRE, false), new Cavall(NEGRE, false), new Alfil(NEGRE, false), new Reina(NEGRE, false), new Rei(NEGRE, false), new Alfil(NEGRE, false), new Cavall(NEGRE, false), new Torre(NEGRE, false));
-            files [1] = new Array(8).fill(0).map(() => new Peo(NEGRE, false));
-            files [6] = new Array(8).fill(0).map(() => new Peo(BLANC, false));
+            files [1] = new Array(8).fill(0).map(() => new Peo(NEGRE, false, false));
+            files [6] = new Array(8).fill(0).map(() => new Peo(BLANC, false, false));
             files [7] = new Array(new Torre(BLANC, false), new Cavall(BLANC, false), new Alfil(BLANC, false), new Reina(BLANC, false), new Rei(BLANC, false), new Alfil(BLANC, false), new Cavall(BLANC, false), new Torre(BLANC, false));
             
             this.array = files;

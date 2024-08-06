@@ -56,10 +56,10 @@ describe('MoveKnower', function() {
             it("El nombre s'ha de reduir en 3 si hi afegim una fitxa blanca a 3 caselles de la vora", function(){
                 let inicial = new Taulell()
                     .addFitxaEnPosicio(4, 5, reina_blanca)
-                    .addFitxaEnPosicio(2, 5, new Peo(BLANC, true))
-                    .addFitxaEnPosicio(4, 2, new Peo(BLANC, true))
-                    .addFitxaEnPosicio(1, 2, new Peo(BLANC, true))
-                    .addFitxaEnPosicio(6, 3, new Peo(BLANC, true));
+                    .addFitxaEnPosicio(2, 5, new Peo(BLANC, true, false))
+                    .addFitxaEnPosicio(4, 2, new Peo(BLANC, true, false))
+                    .addFitxaEnPosicio(1, 2, new Peo(BLANC, true, false))
+                    .addFitxaEnPosicio(6, 3, new Peo(BLANC, true, false));
                 let moviments = reina_blanca.moves(4, 5, inicial)
                 expect(moviments.length).toEqual(15);
                 expect(moviments.filter((taulell) => taulell.getAllFitxaEnPosicio().filter((arr) => 
@@ -73,10 +73,10 @@ describe('MoveKnower', function() {
             it("El nombre s'ha de reduir en 2 si hi afegim una fitxa negre a 3 caselles de la vora", function(){
                 let inicial = new Taulell()
                     .addFitxaEnPosicio(4, 5, reina_blanca)
-                    .addFitxaEnPosicio(2, 5, new Peo(NEGRE, true))
-                    .addFitxaEnPosicio(4, 2, new Peo(NEGRE, true))
-                    .addFitxaEnPosicio(1, 2, new Peo(NEGRE, true))
-                    .addFitxaEnPosicio(6, 3, new Peo(NEGRE, true));
+                    .addFitxaEnPosicio(2, 5, new Peo(NEGRE, true, false))
+                    .addFitxaEnPosicio(4, 2, new Peo(NEGRE, true, false))
+                    .addFitxaEnPosicio(1, 2, new Peo(NEGRE, true, false))
+                    .addFitxaEnPosicio(6, 3, new Peo(NEGRE, true, false));
                 let moviments = reina_blanca.moves(4, 5, inicial)
                 expect(moviments.length).toEqual(19);
                 expect(moviments.filter((taulell) => 

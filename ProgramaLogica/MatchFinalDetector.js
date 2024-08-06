@@ -19,15 +19,17 @@ function ScanCheckmate(taulell, jugador){
 
 function ScanCheck(taulell, jugador){
     let Rei = REI_NEGRE
+    let ReiRival = REI_BLANC
     if (jugador == BLANC){
         Rei = REI_BLANC
+        ReiRival = REI_NEGRE
     }
     let posicioRei = taulell.getPosicioFitxa(Rei);
     if (posicioRei.length != 2){
         throw "No hi ha rei"
     }
     let check = false;
-    let MovimentsTotals = LlistarMoviments(taulell, !jugador);
+    let MovimentsTotals = LlistarMoviments(taulell, !jugador, true);
     for (let inicialVerticalCoord = 0; inicialVerticalCoord<MovimentsTotals.length; inicialVerticalCoord++){
         if (MovimentsTotals[inicialVerticalCoord].getFitxaEnPosicio(posicioRei[0], posicioRei[1]).peça != Rei && MovimentsTotals[inicialVerticalCoord].getFitxaEnPosicio(posicioRei[0], posicioRei[1]).peça != BUIDA){
             check = true;

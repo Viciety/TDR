@@ -4,8 +4,8 @@ describe('MoveKnower', function() {
 
     describe('Al crear-lo', function() {
       
-      let peo_blanc = new Peo(BLANC, true);
-      let peo_negre = new Peo(NEGRE, true);
+      let peo_blanc = new Peo(BLANC, true, false);
+      let peo_negre = new Peo(NEGRE, true, false);
 
       it('ha de respectar el color del constructor quan es blanc', function() {
         expect(peo_blanc.getColor()).toEqual(BLANC);
@@ -23,7 +23,7 @@ describe('MoveKnower', function() {
     });
 
     describe("Al moure'l una casella", function() {
-      let peo_blanc = new Peo(BLANC, true);
+      let peo_blanc = new Peo(BLANC, true, false);
       let inicial = new Taulell()
         .addFitxaEnPosicio(4, 5, peo_blanc);
       it("Comprovar la posició", function() {
@@ -37,7 +37,7 @@ describe('MoveKnower', function() {
       });
     });
     describe("Al moure'l dues caselles", function() {
-      let peo_blanc = new Peo(BLANC, false);
+      let peo_blanc = new Peo(BLANC, false, false);
       let inicial = new Taulell()
         .addFitxaEnPosicio(4, 5, peo_blanc);
       it("Comprovar la posició", function() {
@@ -53,7 +53,7 @@ describe('MoveKnower', function() {
     });
     
     describe("Al clonar-lo", function() {
-      let peo_blanc = new Peo(BLANC, false);
+      let peo_blanc = new Peo(BLANC, false, false);
       let peo_blanc2 = peo_blanc.cloneFitxa();
       it('Que el clone et torni un peo amb les mateixes propietats que les dabans menys el premoves', function(){
         expect(peo_blanc.peça).toEqual(PEO_BLANC)
@@ -62,6 +62,16 @@ describe('MoveKnower', function() {
         expect(peo_blanc2.peça).toEqual(PEO_BLANC)
         expect(peo_blanc2.color).toEqual(BLANC)
         expect(peo_blanc2.preMoves).toEqual(true)
+      });
+    });
+    describe("Si li demanen nomesMenjant", function() {
+      let peo_blanc = new Peo(BLANC, false, false);      
+      let taulell_blanc = new Taulell()
+        .addFitxaEnPosicio(6,5,new Torre(NEGRE, false))
+        .addFitxaEnPosicio(7,4,peo_blanc);
+      it("Ha de tornar només 5 taulells", function(){
+        let taulells = peo_blanc.moves(7,4, taulell_blanc, true)
+        expect(taulells.length).toEqual(1);
       });
     });
   });

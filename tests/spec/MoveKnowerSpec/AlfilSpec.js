@@ -51,7 +51,7 @@ describe('MoveKnower', function() {
             });
             it("El nombre s'ha de reduir en 3 si hi afegim una fitxa blanca a 3 caselles de la vora", function(){
                 let inicial = new Taulell()
-                    .addFitxaEnPosicio(4, 5, alfil_blanc).addFitxaEnPosicio(1, 2, new Peo(BLANC, true)).addFitxaEnPosicio(6, 3, new Peo(BLANC, true));
+                    .addFitxaEnPosicio(4, 5, alfil_blanc).addFitxaEnPosicio(1, 2, new Peo(BLANC, true, false)).addFitxaEnPosicio(6, 3, new Peo(BLANC, true, false));
                 let moviments = alfil_blanc.moves(4, 5, inicial)
                 expect(moviments.length).toEqual(7);
                 expect(moviments.filter((posicio) => Math.abs(posicio.getAllFitxaEnPosicio().filter((arr) => 
@@ -61,7 +61,7 @@ describe('MoveKnower', function() {
             });
             it("El nombre s'ha de reduir en 2 si hi afegim dues fitxes negres", function(){
                 let inicial = new Taulell()
-                    .addFitxaEnPosicio(4, 5, alfil_blanc).addFitxaEnPosicio(1, 2, new Peo(NEGRE, true)).addFitxaEnPosicio(6, 3, new Peo(NEGRE, true));
+                    .addFitxaEnPosicio(4, 5, alfil_blanc).addFitxaEnPosicio(1, 2, new Peo(NEGRE, true, false)).addFitxaEnPosicio(6, 3, new Peo(NEGRE, true, false));
                 let moviments = alfil_blanc.moves(4, 5, inicial)
                 expect(moviments.length).toEqual(9);
                 expect(moviments.filter((posicio) => Math.abs(posicio.getAllFitxaEnPosicio().filter((arr) => 
