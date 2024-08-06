@@ -119,4 +119,43 @@ describe('MatchFinalDetector', function() {
             });
         });
     });
+
+    describe('Insufficient Material', function() {
+
+        describe('Exemple1: Taulell amb rei i un alfil', function() {
+        
+            let taulellAmbPeo = new Taulell()
+                .addFitxaEnPosicio(0, 7, new Rei(NEGRE, true))
+                .addFitxaEnPosicio(2, 6, new Alfil(BLANC, true))
+                .addFitxaEnPosicio(1, 5, new Rei(BLANC, true));
+    
+            it('Ha de tornar true si li toca al negre', function() {
+            expect(ScanInsufficientMaterial(taulellAmbPeo)).toEqual(true);
+            });
+        });
+
+        describe('Exemple2: Taulell amb rei 2 alfils', function() {
+        
+            let taulellAmbPeo = new Taulell()
+                .addFitxaEnPosicio(0, 7, new Rei(NEGRE, true))
+                .addFitxaEnPosicio(2, 6, new Alfil(BLANC, true))
+                .addFitxaEnPosicio(3, 6, new Alfil(BLANC, true))
+                .addFitxaEnPosicio(1, 5, new Rei(BLANC, true));
+                
+            it('Ha de tornar false', function() {
+            expect(ScanInsufficientMaterial(taulellAmbPeo)).toEqual(false);
+            });
+        });
+
+        describe('Exemple3: Taulell amb rei i una torre', function() {
+            let taulellAmbPeo = new Taulell()
+                .addFitxaEnPosicio(0, 7, new Rei(NEGRE, true))
+                .addFitxaEnPosicio(2, 6, new Torre(BLANC, true))
+                .addFitxaEnPosicio(1, 5, new Rei(BLANC, true));
+            it('Ha de tornar false', function() {
+            expect(ScanInsufficientMaterial(taulellAmbPeo)).toEqual(false);
+            });
+        });
+
+    });
 });

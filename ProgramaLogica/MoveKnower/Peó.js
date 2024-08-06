@@ -41,8 +41,7 @@ class Peo{
         PossiblesMovimentsPeo.push(taulell
             .addFitxaEnPosicio(inicialVerticalCoord, inicialHoritzontalCoord, BUIDA)
             .addFitxaEnPosicio(finalVerticalCoord, finalHoritzontalCoord, new Cavall(this.color, true)));
-        console.log("Promotion available")
-        return PossiblesMovimentsPeo
+        return PossiblesMovimentsPeo;
     }
 
     moves(inicialVerticalCoord, inicialHoritzontalCoord, taulell, nomesMenjant){

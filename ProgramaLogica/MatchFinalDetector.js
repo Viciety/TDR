@@ -58,7 +58,27 @@ function ScanStalemate(taulell, jugador){
 }
 
 function ScanInsufficientMaterial(taulell){
-    let insufficientMaterial = false;
     let peces = taulell.getAllFitxaEnPosicio();
-    return insufficientMaterial
+    if (peces.some((fitxa) => 
+        fitxa[0].peça == PEO_BLANC 
+        || fitxa[0].peça == PEO_NEGRE 
+        || fitxa[0].peça == TORRE_BLANCA 
+        || fitxa[0].peça == TORRE_NEGRA 
+        || fitxa[0].peça == REINA_BLANCA
+        || fitxa[0].peça == REINA_NEGRA 
+    ) || peces.length>5){
+        return false;
+    }else if (peces.length == 4 && peces.filter((fitxa) => 
+        fitxa[0].peça != CAVALL_BLANC 
+        && fitxa[0].peça != CAVALL_BLANC 
+        && fitxa[0].peça != REI_BLANC 
+        && fitxa[0].peça != REI_NEGRE
+    ).length == 0){
+        return true
+    }else if(peces.length == 3){
+        return true;
+    }else{
+        return false;
+    }
+    
 }

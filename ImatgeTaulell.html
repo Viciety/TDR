@@ -13,11 +13,9 @@
     <title>Taulell d'Escacs</title>
 </head>
 <body>
-    <script>
-        
-    </script><table id="TaulellEscacs">
-    <tbody>
-        <script type="text/javascript" src="TaulellOrdinador.js"></script>
+    <div id="TaulellEscacs"></div>
+</body>
+<script type="text/javascript" src="TaulellOrdinador.js"></script>
         <script type="text/javascript" src="ProgramaLogica/MoveChooser/RandomChooser.js"></script>
         <script type="text/javascript" src="ProgramaLogica/MoveChooser/ScoreChooser.js"></script>
         <script type="text/javascript" src="ProgramaLogica/MoveChooser/ComposedScorer.js"></script>
@@ -35,7 +33,7 @@
         <script type="text/javascript" src="Funcionalities.js"></script>
         <script type="text/javascript" src="ProgramaLogica/MoveChooser/MoveScorer/Scorer.js"></script>
         <script type="text/javascript">
-
+        document.addEventListener("DOMContentLoaded", function(event) {
             let scorers = new Array (new Array (new MaterialAdvantatgeScorer(), 10), new Array (new CheckmateScorer(), 10000))
             let score = new ComposedScorer(scorers)
             let moveChooser = new ScoreMoveChooser(score);
@@ -43,10 +41,17 @@
 
             DibuixarTaulell(inicial);
             
-            
+            const NoHaAcabat = 0;
+            const Victoria = 1;
+            const Taules = 2;
+
+
+
             let jugador = BLANC;
             let seguentTaulell= inicial;
-            for (let moviments = 0; moviments<300; moviments++){
+            let moviments = 0;
+            let resultat = NoHaAcabat;
+            do{
                 let PossiblesMoviments = LlistarMoviments(seguentTaulell, jugador);
                 let PossiblesMovimentsValids = PossiblesMoviments.filter((possibleTaulell) => !ScanCheck(possibleTaulell, jugador));
                 seguentTaulell = moveChooser.chooseMove(PossiblesMovimentsValids, jugador);
@@ -55,18 +60,19 @@
                 }
                 DibuixarTaulell(seguentTaulell);
                 if (ScanCheckmate(seguentTaulell, !jugador)){
-                    document.write("Ha guanyat el jugador "+jugador+"!");
-                    break;
+                    resultat = Victoria;
                 }
                 if (ScanStalemate(seguentTaulell, jugador)){
                     document.write("Taules per rei ofegat");
-                    break;
+                    resultat = Taules;
+                }
+                if (ScanInsufficientMaterial(seguentTaulell)){
+                    resultat = Taules;
                 }
                 jugador = (jugador == BLANC) ? NEGRE : BLANC;
-            }
-
+                moviments++;
+                console.log(moviments);
+            }while(resultat == NoHaAcabat && moviments<100)
+        });
         </script>
-    </tbody>
-</table>
-</body>
 </html>
