@@ -11,3 +11,8 @@ function LlistarMoviments(taulell, jugador, nomesMenjant){
     }
     return TaulellsDespresMoviment
 }
+
+function LlistarMovimentsValids(taulell, jugador){
+    let PossiblesMovimentsValids = LlistarMoviments(taulell, jugador);
+    return PossiblesMovimentsValids.filter((possibleTaulell) => !ScanCheck(possibleTaulell, jugador));
+}

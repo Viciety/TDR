@@ -35,9 +35,16 @@
         <script type="text/javascript">
         document.addEventListener("DOMContentLoaded", function(event) {
             let scorers = new Array (new Array (new MaterialAdvantatgeScorer(), 10), new Array (new CheckmateScorer(), 10000))
-            let score = new ComposedScorer(scorers)
-            let moveChooser = new ScoreMoveChooser(score);
-            let inicial = new Taulell(true);
+            let score = new ComposedScorer(scorers);
+            let depth = 3;
+            let deepScorer = new DeepScorer(depth, score);
+            let moveChooser = new ScoreMoveChooser(deepScorer);
+            let inicial = new Taulell()
+                .addFitxaEnPosicio(5, 2, new Rei(BLANC, true))
+                .addFitxaEnPosicio(3, 3, new Rei(NEGRE, true))
+                .addFitxaEnPosicio(4, 2, new Peo(NEGRE, true))
+                .addFitxaEnPosicio(5, 3, new Peo(NEGRE, true))
+                .addFitxaEnPosicio(1, 0, new Peo(BLANC, true));
 
             DibuixarTaulell(inicial);
             
@@ -45,15 +52,12 @@
             const Victoria = 1;
             const Taules = 2;
 
-
-
             let jugador = BLANC;
             let seguentTaulell= inicial;
             let moviments = 0;
             let resultat = NoHaAcabat;
             do{
-                let PossiblesMoviments = LlistarMoviments(seguentTaulell, jugador);
-                let PossiblesMovimentsValids = PossiblesMoviments.filter((possibleTaulell) => !ScanCheck(possibleTaulell, jugador));
+                let PossiblesMovimentsValids = LlistarMovimentsValids(seguentTaulell, jugador);
                 seguentTaulell = moveChooser.chooseMove(PossiblesMovimentsValids, jugador);
                 if (seguentTaulell == undefined){
                     throw "seguentTaulell is undefined a l'HTML. Iteració "+(moviments+1);
@@ -71,8 +75,7 @@
                 }
                 jugador = (jugador == BLANC) ? NEGRE : BLANC;
                 moviments++;
-                console.log(moviments);
-            }while(resultat == NoHaAcabat && moviments<100)
+            }while(resultat == NoHaAcabat && moviments<10)
         });
         </script>
 </html>

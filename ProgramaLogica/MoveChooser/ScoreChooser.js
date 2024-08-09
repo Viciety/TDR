@@ -11,7 +11,7 @@ class ScoreMoveChooser{
         if (PossiblesMoviments.length <= 0){
             throw "Cap possible moviment";
         }
-        let movimentsPuntuats = PossiblesMoviments.map((mov) => new Array (mov, this.scorer.composeScorers(mov, jugador)));
+        let movimentsPuntuats = PossiblesMoviments.map((mov) => new Array (mov, this.scorer.scoreBoard(mov, jugador)));
         let millors = movimentsPuntuats.slice(1).reduce(
             (millorFinsAra, actual) => {
                 if (millorFinsAra[0][1] == actual[1]){

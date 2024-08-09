@@ -16,7 +16,7 @@ describe('Composed Scorer', function() {
         let composed = new ComposedScorer(scorer);
 
         it('Ha de tornar el doble de la puntuacio del SpecScorer', function() {
-            expect(composed.composeScorers(taulell1, BLANC)).toEqual(202);
+            expect(composed.scoreBoard(taulell1, BLANC)).toEqual(202);
         });
 
     });
@@ -29,7 +29,7 @@ describe('Composed Scorer', function() {
         let composed = new ComposedScorer(scorer1);
 
         it('Ha de tornar dos cops el doble de la puntuacio del SpecScorer', function() {
-            expect(composed.composeScorers(taulell1, BLANC)).toEqual(404);
+            expect(composed.scoreBoard(taulell1, BLANC)).toEqual(404);
         });
 
     });
@@ -45,7 +45,7 @@ describe('Composed Scorer', function() {
         let composed = new ComposedScorer(scorer1);
 
         it('Ha de tornar dos cops el doble de la puntuacio del SpecScorer', function() {
-            expect(composed.composeScorers(taulell1, BLANC)).toEqual(202);
+            expect(composed.scoreBoard(taulell1, BLANC)).toEqual(202);
         });
 
     });

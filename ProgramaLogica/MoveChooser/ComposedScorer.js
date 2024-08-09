@@ -7,7 +7,7 @@ class ComposedScorer{
         }
     }
 
-    composeScorers(taulell, jugador){
+    scoreBoard(taulell, jugador){
         let overallScore = 0;
         for (let z = 0; z<this.scorers.length; z++){
             overallScore = overallScore + this.scorers[z][0].scoreBoard(taulell, jugador)*this.scorers[z][1];
