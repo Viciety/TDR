@@ -49,4 +49,21 @@ describe('Composed Scorer', function() {
         });
 
     });
+
+    describe('Taulell smothered checkmate i checkmate scorer', function() {
+        let scorer1 = new Array(new Array(new CheckmateScorer(), 1));
+        let composed = new ComposedScorer(scorer1);
+        
+        let taulellAmbPeo = new Taulell()
+            .addFitxaEnPosicio(7, 0, new Rei(BLANC, true))
+            .addFitxaEnPosicio(2, 3, new Rei(NEGRE, true))
+            .addFitxaEnPosicio(6, 2, new Cavall(NEGRE, true))
+            .addFitxaEnPosicio(6, 0, new Peo(BLANC, true))
+            .addFitxaEnPosicio(6, 1, new Peo(BLANC, true))
+            .addFitxaEnPosicio(7, 1, new Torre(BLANC, true));
+
+        it('Ha de tornar 1 pel negre', function() {
+        expect(composed.scoreBoard(taulellAmbPeo, NEGRE)).toEqual(1);
+        });
+    });
 });

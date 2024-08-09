@@ -31,6 +31,7 @@
         <script type="text/javascript" src="ProgramaLogica/MatchFinalDetector.js"></script>
         <script type="text/javascript" src="DibuixarTaulell.js"></script>
         <script type="text/javascript" src="Funcionalities.js"></script>
+        <script type="text/javascript" src="ExemplesTaulells.js"></script>
         <script type="text/javascript" src="ProgramaLogica/MoveChooser/MoveScorer/Scorer.js"></script>
         <script type="text/javascript">
         document.addEventListener("DOMContentLoaded", function(event) {
@@ -39,13 +40,8 @@
             let depth = 3;
             let deepScorer = new DeepScorer(depth, score);
             let moveChooser = new ScoreMoveChooser(deepScorer);
-            let inicial = new Taulell()
-                .addFitxaEnPosicio(5, 2, new Rei(BLANC, true))
-                .addFitxaEnPosicio(3, 3, new Rei(NEGRE, true))
-                .addFitxaEnPosicio(4, 2, new Peo(NEGRE, true))
-                .addFitxaEnPosicio(5, 3, new Peo(NEGRE, true))
-                .addFitxaEnPosicio(1, 0, new Peo(BLANC, true));
-
+            let inicial = TwoVSOnePawnAndKings;
+    
             DibuixarTaulell(inicial);
             
             const NoHaAcabat = 0;
@@ -75,7 +71,7 @@
                 }
                 jugador = (jugador == BLANC) ? NEGRE : BLANC;
                 moviments++;
-            }while(resultat == NoHaAcabat && moviments<10)
+            }while(resultat == NoHaAcabat && moviments<50)
         });
         </script>
 </html>

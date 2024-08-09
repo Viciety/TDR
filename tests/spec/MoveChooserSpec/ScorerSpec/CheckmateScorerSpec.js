@@ -15,6 +15,22 @@ describe('CheckmateScorer', function() {
             expect(scorer.scoreBoard(taulell1, BLANC)).toEqual(1);
             expect(scorer.scoreBoard(taulell2, BLANC)).toEqual(0);
         });
-
     });
+
+    describe('Exemple3: Taulell smothered checkmate', function() {
+        
+        let scorer = new CheckmateScorer();
+        let taulellAmbPeo = new Taulell()
+            .addFitxaEnPosicio(7, 0, new Rei(BLANC, true))
+            .addFitxaEnPosicio(2, 3, new Rei(NEGRE, true))
+            .addFitxaEnPosicio(6, 2, new Cavall(NEGRE, true))
+            .addFitxaEnPosicio(6, 0, new Peo(BLANC, true))
+            .addFitxaEnPosicio(6, 1, new Peo(BLANC, true))
+            .addFitxaEnPosicio(7, 1, new Torre(BLANC, true));
+
+        it('Ha de tornar true si li toca al blanc', function() {
+        expect(scorer.scoreBoard(taulellAmbPeo, NEGRE)).toEqual(1);
+        });
+    });
+    
 });

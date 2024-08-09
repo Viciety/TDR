@@ -78,6 +78,20 @@ describe('MatchFinalDetector', function() {
             expect(ScanCheckmate(taulellAmbPeo, NEGRE)).toEqual(false);
             });
         });
+
+        describe('Exemple3: Taulell smothered checkmate', function() {
+            let taulellAmbPeo = new Taulell()
+                .addFitxaEnPosicio(7, 0, new Rei(BLANC, true))
+                .addFitxaEnPosicio(2, 3, new Rei(NEGRE, true))
+                .addFitxaEnPosicio(6, 2, new Cavall(NEGRE, true))
+                .addFitxaEnPosicio(6, 0, new Peo(BLANC, true))
+                .addFitxaEnPosicio(6, 1, new Peo(BLANC, true))
+                .addFitxaEnPosicio(7, 1, new Torre(BLANC, true));
+  
+            it('Ha de tornar true si li toca al blanc', function() {
+            expect(ScanCheckmate(taulellAmbPeo, BLANC)).toEqual(true);
+            });
+        });
     });
 
     describe('Stalemate', function() {

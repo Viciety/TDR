@@ -9,7 +9,7 @@ class DeepScorer{
     }
 
     scoreBoard(taulell, jugador){
-        this.movmentTree(this.depth, taulell, !jugador, jugador);
+        return this.movmentTree(this.depth, taulell, !jugador, jugador);
     }
     
     movmentTree(depth, taulell, torn, jugador){
