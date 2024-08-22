@@ -12,18 +12,23 @@ describe('Deep Scorer', function() {
     describe('Taulell smothered checkmate i checkmate scorer', function() {
         let scorer1 = new Array(new Array(new CheckmateScorer(), 1));
         let composed = new ComposedScorer(scorer1);
-        let depp = new DeepScorer(2, composed)
-        
-        let taulellAmbPeo = new Taulell()
-            .addFitxaEnPosicio(7, 0, new Rei(BLANC, true))
-            .addFitxaEnPosicio(2, 3, new Rei(NEGRE, true))
-            .addFitxaEnPosicio(6, 2, new Cavall(NEGRE, true))
-            .addFitxaEnPosicio(6, 0, new Peo(BLANC, true))
-            .addFitxaEnPosicio(6, 1, new Peo(BLANC, true))
-            .addFitxaEnPosicio(7, 1, new Torre(BLANC, true));
-
+        let depp = new DeepScorer(2, composed);
         it('Ha de tornar 1 pel negre', function() {
-        expect(depp.scoreBoard(taulellAmbPeo, NEGRE)).toEqual(1);
+        expect(depp.scoreBoard(SmotheredMateNegreIn2, NEGRE)).toEqual(1);
+        });
+    });
+
+    describe('Taulell rook checkmate prioritza menys profunditat', function() {
+        let scorer1 = new Array(new Array(new CheckmateScorer(), 1));
+        let composed = new ComposedScorer(scorer1);
+        let depp = new DeepScorer(2, composed);
+        let KingAndRookVSKingInCorner = new Taulell()
+            .addFitxaEnPosicio(0, 7, new Rei(BLANC, true))
+            .addFitxaEnPosicio(2, 6, new Rei(NEGRE, true))
+            .addFitxaEnPosicio(7, 1, new Torre(NEGRE, true))
+        
+        it('Ha de tornar 1 pel negre', function() {
+            expect(depp.scoreBoard(KingAndRookVSKingInCorner, NEGRE)).toEqual(1);
         });
     });
 

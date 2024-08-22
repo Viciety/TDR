@@ -37,10 +37,10 @@
         document.addEventListener("DOMContentLoaded", function(event) {
             let scorers = new Array (new Array (new MaterialAdvantatgeScorer(), 10), new Array (new CheckmateScorer(), 10000))
             let score = new ComposedScorer(scorers);
-            let depth = 3;
+            let depth = 2;
             let deepScorer = new DeepScorer(depth, score);
             let moveChooser = new ScoreMoveChooser(deepScorer);
-            let inicial = TwoVSOnePawnAndKings;
+            let inicial = new Taulell(true);
     
             DibuixarTaulell(inicial);
             
@@ -71,7 +71,7 @@
                 }
                 jugador = (jugador == BLANC) ? NEGRE : BLANC;
                 moviments++;
-            }while(resultat == NoHaAcabat && moviments<50)
+            }while(resultat == NoHaAcabat && moviments<60)
         });
         </script>
 </html>

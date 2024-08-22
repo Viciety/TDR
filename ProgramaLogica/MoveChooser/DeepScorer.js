@@ -14,16 +14,21 @@ class DeepScorer{
     
     movmentTree(depth, taulell, torn, jugador){
         if (depth<=0){
-            return this.scorer.scoreBoard(taulell, jugador)
-        
+            let score = this.scorer.scoreBoard(taulell, jugador);
+            console.log("al final te score "+score);
+            return score;
         }
         let movimentsValids = LlistarMovimentsValids(taulell, torn);
 
         if(movimentsValids.length == 0){
-            return this.scorer.scoreBoard(taulell, jugador)
+            let score = this.scorer.scoreBoard(taulell, jugador)+depth;
+            console.log("no hi ha moviments i te score "+score);
+            return score;
         }else{
             let movTree = movimentsValids.map((mov) => this.movmentTree(depth-1, mov, !torn, jugador));
+            console.log("mirant score de tots els fills al depth "+depth+": "+movTree);
             if (torn == jugador){
+                console.log("el torn es del que ha de moure");
                 return movTree.slice(1).reduce(
                     (accumulador, actual) => {
                         if (accumulador<actual){
@@ -35,6 +40,7 @@ class DeepScorer{
                     movTree[0],
                 );
             }else{
+                console.log("el torn es del que NO ha de moure");
                 return movTree.slice(1).reduce(
                     (accumulador, actual) => {
                         if (accumulador>actual){
@@ -48,9 +54,5 @@ class DeepScorer{
             }
             
         }
-    }
-
-    treeScorer(){
-
     }
 }
