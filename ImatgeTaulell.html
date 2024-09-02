@@ -29,10 +29,11 @@
         <script type="text/javascript" src="ProgramaLogica/MoveKnower/Alfil.js"></script>
         <script type="text/javascript" src="ProgramaLogica/MoveKnower/Reina.js"></script>
         <script type="text/javascript" src="ProgramaLogica/MatchFinalDetector.js"></script>
+        <script type="text/javascript" src="ProgramaLogica/MoveChooser/MoveScorer/Scorer.js"></script>
+        <script type="text/javascript" src="ProgramaLogica/PlayerManager/WorkerPlayerManager.js"></script>
         <script type="text/javascript" src="DibuixarTaulell.js"></script>
         <script type="text/javascript" src="Funcionalities.js"></script>
         <script type="text/javascript" src="ExemplesTaulells.js"></script>
-        <script type="text/javascript" src="ProgramaLogica/MoveChooser/MoveScorer/Scorer.js"></script>
         <script type="text/javascript">
         document.addEventListener("DOMContentLoaded", function(event) {
             let scorers = new Array (new Array (new MaterialAdvantatgeScorer(), 10), new Array (new CheckmateScorer(), 10000))
@@ -40,7 +41,7 @@
             let depth = 2;
             let deepScorer = new DeepScorer(depth, score);
             let moveChooser = new ScoreMoveChooser(deepScorer);
-            let inicial = new Taulell(true);
+            let inicial = TwoVSOnePawnAndKings;
     
             DibuixarTaulell(inicial);
             
@@ -49,15 +50,12 @@
             const Taules = 2;
 
             let jugador = BLANC;
-            let seguentTaulell= inicial;
             let moviments = 0;
+            let maxMoviments = 60;
             let resultat = NoHaAcabat;
-            do{
-                let PossiblesMovimentsValids = LlistarMovimentsValids(seguentTaulell, jugador);
-                seguentTaulell = moveChooser.chooseMove(PossiblesMovimentsValids, jugador);
-                if (seguentTaulell == undefined){
-                    throw "seguentTaulell is undefined a l'HTML. Iteració "+(moviments+1);
-                }
+            let playerManagers = new Array();
+            let currentPlayerManager = 0;
+            let crida = function(seguentTaulell){
                 DibuixarTaulell(seguentTaulell);
                 if (ScanCheckmate(seguentTaulell, !jugador)){
                     resultat = Victoria;
@@ -69,9 +67,18 @@
                 if (ScanInsufficientMaterial(seguentTaulell)){
                     resultat = Taules;
                 }
-                jugador = (jugador == BLANC) ? NEGRE : BLANC;
                 moviments++;
-            }while(resultat == NoHaAcabat && moviments<60)
+                jugador = (jugador == BLANC) ? NEGRE : BLANC;
+                if(resultat == NoHaAcabat && moviments<maxMoviments){
+                    currentPlayerManager = (currentPlayerManager + 1) % 2
+                    playerManagers[currentPlayerManager].manageTorn(seguentTaulell);
+                }
+            };
+            playerManagers.push(new WorkerPlayerManager(crida,BLANC,moveChooser));
+            playerManagers.push(new WorkerPlayerManager(crida,NEGRE,moveChooser));
+
+            playerManagers[currentPlayerManager].manageTorn(inicial);
+
         });
         </script>
 </html>
