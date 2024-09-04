@@ -74,8 +74,8 @@
                     playerManagers[currentPlayerManager].manageTorn(seguentTaulell);
                 }
             };
-            playerManagers.push(new WorkerPlayerManager(crida,BLANC,moveChooser));
-            playerManagers.push(new WorkerPlayerManager(crida,NEGRE,moveChooser));
+            playerManagers.push(new WorkerPlayerManager(crida,BLANC,MoveChooserBlanc));
+            playerManagers.push(new WorkerPlayerManager(crida,NEGRE,MoveChooserNegre));
 
             playerManagers[currentPlayerManager].manageTorn(inicial);
 

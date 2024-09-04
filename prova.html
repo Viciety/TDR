@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .split {
+            width: 50%;
+            padding-top: 20px;
+        }
+        .left {
+            left: 0;
+        }
+        .right {
+            right: 0;
+        }
+        .centered img {
+            width: 150px;
+            border-radius: 50%;
+        }
+        #Boto {
+            clear:both;
+            margin-top: 50px;
+        }
+    </style>
+</head>
+<body>
+<div>
+    <div class="split left">
+        <div class="centered">
+          <h2>Peces Blanques</h2>
+          <label for="player" id="player1">Jugador</label>
+          <select name="Jugador" id="playerblanc" onchange="DibuixarOpcions('blanc')">
+            <option value="Engine" selected>Màquina</option>
+            <option value="Player">Jugador</option>
+          </select>
+            <br/>
+            <div id="opcionsblanc">
+                <input type="radio" id="blancChoice1" name="MoveChooser" value="random" />
+                <label for="blancChoice1">Random</label>
+                <br/>
+                <input type="radio" id="blancChoice2" name="MoveChooser" value="inteligent" />
+                <label for="blancChoice2">Intel·ligent</label>
+                <br/>
+                <br/>
+                <label for="blancDepth">Depth</label>
+                <input type="number" id="blancDepth" name="Depth">
+                <br/>
+                <input type="checkbox" id="blancScorerChoice1" name="Scorers" value="Checkmate" />
+                <label for="blancScorerChoice1">Checkmate Scorer</label>
+                <br/>
+                <input type="checkbox" id="blancScorerChoice2" name="Scorers" value="MaterialAdvantadge" />
+                <label for="blancScorerChoice2">MaterialAdvantadge Scorer</label>
+    
+            </div>
+        </div>
+    </div>
+      
+    <div class="split right">
+        <div class="centered">
+          <h2>Peces Negres</h2>
+          <label for="player" id="player2">Jugador</label>
+          <select name="Jugador" id="playernegre" onchange="DibuixarOpcions('negre')">
+            <option value="Engine" selected>Màquina</option>
+            <option value="Player">Jugador</option>
+          </select>
+            <br/>
+            <div id="opcionsnegre">
+                <input type="radio" id="negreChoice1" name="MoveChooser" value="random" />
+                <label for="negreChoice1">Random</label>
+                <br/>
+                <input type="radio" id="negreChoice2" name="MoveChooser" value="inteligent" />
+                <label for="negreChoice2">Intel·ligent</label>
+                <br/>
+                <br/>
+
+                <label for="negreDepth">Depth</label>
+                <input type="number" id="negreDepth" name="Depth">
+                <br/>
+                <input type="checkbox" id="negreScorerChoice1" name="Scorers" value="added" />
+                <label for="negreScorerChoice1">Checkmate Scorer</label>
+                <br/>
+                <input type="checkbox" id="negreScorerChoice2" name="Scorers" value="added" />
+                <label for="negreScorerChoice2">MaterialAdvantadge Scorer</label>
+    
+            </div>
+        </div> 
+    </div>  
+</div>
+    <div class="centered" id="Boto">
+        <input type="button" value="Començar Partida" onclick="StartMatch()"/>
+    </div>
+
+<script>
+        function DibuixarOpcions(color){
+            let opcions = document.getElementById("opcions"+color);
+            let tria = document.getElementById("player"+color).value;
+            if(tria == 'Engine'){
+                opcions.style.display = 'block';
+            }else{
+                opcions.style.display = 'none';
+            }
+            
+        }
+        function StartMatch(){
+            let PlayerBlanc = document.getElementById("playerblanc").value;
+            if (PlayerBlanc == 'Player'){
+                document.write("jugador blanc")
+            }else if (PlayerBlanc == 'Engine'){
+                let botblanc = document.getElementById("blancChoice1").value;
+                if (botblanc == 'random'){
+                    let MoveChooserBlanc = new RandomMoveChooser()    
+                }else{
+                    let scorers = new Array ();
+                    let depthBlanc = document.getElementById('blancDepth').value;
+                    let CheckmateScorerBlanc = document.getElementById('blancScorerChoice1').value;
+                    let MaterialAdvantatgeScorerBlanc = document.getElementById('blancScorerChoice2').value;
+                    if (CheckmateScorerBlanc == added){
+                        scorers.push(new Array(new CheckmateScorer(), 1))
+                    }
+                    if (MaterialAdvantatgeScorerBlanc == added){
+                        scorers.push(new Array(new MaterialAdvantatgeScorer(), 1))
+                    }
+                    let composed = new ComposedScorer(scorers);
+                    let deepScorer = new DeepScorer(depthBlanc, composed);
+                    let MoveChooserBlanc = new ScoreMoveChooser(deepScorer);
+                    
+
+                }
+            }else{
+                throw "Error en el valor del select blanc"
+            }
+
+            let PlayerNegre = document.getElementById("playerblanc").value;
+            if (PlayerNegre == 'Player'){
+                document.write("jugador negre")
+            }else if (PlayerNegre == 'Engine'){
+                let botnegre = document.getElementById("negreChoice1").value;
+                if (botnegre == 'random'){
+                    let MoveChooserNegre = new RandomMoveChooser()    
+                }else{
+                    let scorers = new Array ();
+                    let depthNegre = document.getElementById('negreDepth');
+                    let CheckmateScorerNegre = document.getElementById('negreScorerChoice1').value;
+                    let MaterialAdvantatgeScorerNegre = document.getElementById('negreScorerChoice2');
+                    if (CheckmateScorerNegre == added){
+                        scorers.push(new Array(new CheckmateScorer(), 1))
+                    }
+                    if (MaterialAdvantatgeScorerNegre == added){
+                        scorers.push(new Array(new MaterialAdvantatgeScorer(), 1))
+                    }
+                    let composed = new ComposedScorer(scorers);
+                    let deepScorer = new DeepScorer(depthNegre, composed);
+                    let MoveChooserNegre = new ScoreMoveChooser(deepScorer);
+
+                }
+            }else{
+                throw "Error en el valor del select negre"
+            }        }
+
+    </script>
+
+</body>
+</html>
