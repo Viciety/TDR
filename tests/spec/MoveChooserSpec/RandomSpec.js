@@ -32,14 +32,6 @@ describe('Random MoveChooser', function() {
                 let moviments = LlistarMoviments(seguentTaulell, jugador);
                 let movimentTriat = moveChooser.chooseMove(moviments, jugador);
                 if(movimentTriat == undefined){
-                    /*
-                    console.log("Moviment Triat: ");
-                    console.log(movimentTriat);
-                    console.log("Moviments Possibles:");
-                    console.log(moviments);
-                    console.log("Moviment Anterior:");
-                    console.log(seguentTaulell);
-                    */
                     break;
                 }
                 seguentTaulell = movimentTriat;

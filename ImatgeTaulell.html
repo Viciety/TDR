@@ -5,80 +5,171 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <style>
+        .split {
+            width: 50%;
+            padding-top: 20px;
+        }
+        .left {
+            left: 0;
+        }
+        .right {
+            right: 0;
+        }
+        .centered img {
+            width: 150px;
+            border-radius: 50%;
+        }
+        #Boto {
+            clear:both;
+            margin-top: 50px;
+        }
+        #reloadButton{
+            display: 'none';
+        }
+    </style>
+    <style>
         #TaulellEscacs{border-collapse: collapse; margin: 0 auto; border:none;}
         td{width: 60px; height: 60px; border:none;}
         .black{background-color: #73934F;}
         .white{background-color: #EFE9D5;}
     </style>
-    <title>Taulell d'Escacs</title>
 </head>
 <body>
-    <div id="TaulellEscacs"></div>
-</body>
-<script type="text/javascript" src="TaulellOrdinador.js"></script>
-        <script type="text/javascript" src="ProgramaLogica/MoveChooser/RandomChooser.js"></script>
-        <script type="text/javascript" src="ProgramaLogica/MoveChooser/ScoreChooser.js"></script>
-        <script type="text/javascript" src="ProgramaLogica/MoveChooser/ComposedScorer.js"></script>
-        <script type="text/javascript" src="ProgramaLogica/MoveChooser/DeepScorer.js"></script>
-        <script type="text/javascript" src="ProgramaLogica/MoveFinder.js"></script>
-        <script type="text/javascript" src="ProgramaLogica/MoveKnower/Cavall.js"></script>
-        <script type="text/javascript" src="ProgramaLogica/MoveKnower/Peó.js"></script>
-        <script type="text/javascript" src="ProgramaLogica/MoveKnower/Rei.js"></script>
-        <script type="text/javascript" src="ProgramaLogica/MoveKnower/StupidFitxa.js"></script>
-        <script type="text/javascript" src="ProgramaLogica/MoveKnower/Torre.js"></script>
-        <script type="text/javascript" src="ProgramaLogica/MoveKnower/Alfil.js"></script>
-        <script type="text/javascript" src="ProgramaLogica/MoveKnower/Reina.js"></script>
-        <script type="text/javascript" src="ProgramaLogica/MatchFinalDetector.js"></script>
-        <script type="text/javascript" src="ProgramaLogica/MoveChooser/MoveScorer/Scorer.js"></script>
-        <script type="text/javascript" src="ProgramaLogica/PlayerManager/WorkerPlayerManager.js"></script>
-        <script type="text/javascript" src="DibuixarTaulell.js"></script>
-        <script type="text/javascript" src="Funcionalities.js"></script>
-        <script type="text/javascript" src="ExemplesTaulells.js"></script>
-        <script type="text/javascript">
-        document.addEventListener("DOMContentLoaded", function(event) {
-            let scorers = new Array (new Array (new MaterialAdvantatgeScorer(), 10), new Array (new CheckmateScorer(), 10000))
-            let score = new ComposedScorer(scorers);
-            let depth = 2;
-            let deepScorer = new DeepScorer(depth, score);
-            let moveChooser = new ScoreMoveChooser(deepScorer);
-            let inicial = TwoVSOnePawnAndKings;
-    
-            DibuixarTaulell(inicial);
+    <script type="text/javascript" src="TaulellOrdinador.js"></script>
+    <script type="text/javascript" src="ProgramaLogica/MoveChooser/RandomChooser.js"></script>
+    <script type="text/javascript" src="ProgramaLogica/MoveChooser/ScoreChooser.js"></script>
+    <script type="text/javascript" src="ProgramaLogica/MoveChooser/ComposedScorer.js"></script>
+    <script type="text/javascript" src="ProgramaLogica/MoveChooser/DeepScorer.js"></script>
+    <script type="text/javascript" src="ProgramaLogica/MoveFinder.js"></script>
+    <script type="text/javascript" src="ProgramaLogica/MoveKnower/Cavall.js"></script>
+    <script type="text/javascript" src="ProgramaLogica/MoveKnower/Peó.js"></script>
+    <script type="text/javascript" src="ProgramaLogica/MoveKnower/Rei.js"></script>
+    <script type="text/javascript" src="ProgramaLogica/MoveKnower/StupidFitxa.js"></script>
+    <script type="text/javascript" src="ProgramaLogica/MoveKnower/Torre.js"></script>
+    <script type="text/javascript" src="ProgramaLogica/MoveKnower/Alfil.js"></script>
+    <script type="text/javascript" src="ProgramaLogica/MoveKnower/Reina.js"></script>
+    <script type="text/javascript" src="ProgramaLogica/MatchFinalDetector.js"></script>
+    <script type="text/javascript" src="ProgramaLogica/MoveChooser/MoveScorer/Scorer.js"></script>
+    <script type="text/javascript" src="ProgramaLogica/PlayerManager/WorkerPlayerManager.js"></script>
+    <script type="text/javascript" src="DibuixarTaulell.js"></script>
+    <script type="text/javascript" src="Funcionalities.js"></script>
+    <script type="text/javascript" src="PlayerBuilder.js"></script>
+    <script type="text/javascript" src="GameStarter.js"></script>
+    <script type="text/javascript" src="ExemplesTaulells.js"></script>
+<div>
+<div>
+    <div id="formulari">
+        <div class="split left">
+            <div class="centered">
+                <h2>Peces Blanques</h2>
+                <label for="player" id="player1">Jugador</label>
+                <select name="Jugador" id="playerblanc" onchange="DibuixarOpcions('blanc')">
+                <option value="Engine" selected>Màquina</option>
+                <option value="Player">Jugador</option>
+                </select>
+                <br/>
+                <div id="opcionsblanc">
+                    <input type="radio" id="blancChoice1" name="MoveChooserBlanc" value="random" />
+                    <label for="blancChoice1">Random</label>
+                    <br/>
+                    <input type="radio" id="blancChoice2" name="MoveChooserBlanc" value="inteligent" />
+                    <label for="blancChoice2">Intel·ligent</label>
+                    <br/>
+                    <br/>
+                    <label for="blancDepth">Depth</label>
+                    <select name="depth" id="blancDepth">
+                        <option value="1" selected>1</option>
+                        <option value="2" >2</option>
+                        <option value="3" >3</option>
+                        <option value="4" >4</option>
+                        <option value="5" >5</option>
+                        <option value="6" >6</option>
+                        <option value="7" >7</option>
+                        <option value="8" >8</option>
+                        <option value="9" >9</option>
+                    </select>
+                    <br/>
+                    <input type="checkbox" id="blancScorerChoice1" name="Scorers" value="Checkmate" />
+                    <label for="blancScorerChoice1">Checkmate Scorer</label>
+                    <br/>
+                    <input type="checkbox" id="blancScorerChoice2" name="Scorers" value="MaterialAdvantadge" />
+                    <label for="blancScorerChoice2">MaterialAdvantadge Scorer</label>
+
+                </div>
+            </div>
+        </div>
             
-            const NoHaAcabat = 0;
-            const Victoria = 1;
-            const Taules = 2;
+        <div class="split right">
+            <div class="centered">
+                <h2>Peces Negres</h2>
+                <label for="player" id="player2">Jugador</label>
+                <select name="Jugador" id="playernegre" onchange="DibuixarOpcions('negre')">
+                <option value="Engine" selected>Màquina</option>
+                <option value="Player">Jugador</option>
+                </select>
+                <br/>
+                <div id="opcionsnegre">
+                    <input type="radio" id="negreChoice1" name="MoveChooserNegre" value="random" />
+                    <label for="negreChoice1">Random</label>
+                    <br/>
+                    <input type="radio" id="negreChoice2" name="MoveChooserNegre" value="inteligent" />
+                    <label for="negreChoice2">Intel·ligent</label>
+                    <br/>
+                    <br/>
 
-            let jugador = BLANC;
-            let moviments = 0;
-            let maxMoviments = 60;
-            let resultat = NoHaAcabat;
-            let playerManagers = new Array();
-            let currentPlayerManager = 0;
-            let crida = function(seguentTaulell){
-                DibuixarTaulell(seguentTaulell);
-                if (ScanCheckmate(seguentTaulell, !jugador)){
-                    resultat = Victoria;
-                }
-                if (ScanStalemate(seguentTaulell, jugador)){
-                    document.write("Taules per rei ofegat");
-                    resultat = Taules;
-                }
-                if (ScanInsufficientMaterial(seguentTaulell)){
-                    resultat = Taules;
-                }
-                moviments++;
-                jugador = (jugador == BLANC) ? NEGRE : BLANC;
-                if(resultat == NoHaAcabat && moviments<maxMoviments){
-                    currentPlayerManager = (currentPlayerManager + 1) % 2
-                    playerManagers[currentPlayerManager].manageTorn(seguentTaulell);
-                }
-            };
-            playerManagers.push(new WorkerPlayerManager(crida,BLANC,MoveChooserBlanc));
-            playerManagers.push(new WorkerPlayerManager(crida,NEGRE,MoveChooserNegre));
+                    <label for="negreDepth">Depth</label>
+                    <select name="depth" id="negreDepth">
+                        <option value="1" selected>1</option>
+                        <option value="2" >2</option>
+                        <option value="3" >3</option>
+                        <option value="4" >4</option>
+                        <option value="5" >5</option>
+                        <option value="6" >6</option>
+                        <option value="7" >7</option>
+                        <option value="8" >8</option>
+                        <option value="9" >9</option>
+                    </select>                <br/>
+                    <input type="checkbox" id="negreScorerChoice1" name="Scorers" value="added" />
+                    <label for="negreScorerChoice1">Checkmate Scorer</label>
+                    <br/>
+                    <input type="checkbox" id="negreScorerChoice2" name="Scorers" value="added" />
+                    <label for="negreScorerChoice2">MaterialAdvantadge Scorer</label>
 
-            playerManagers[currentPlayerManager].manageTorn(inicial);
+                </div>
+            </div> 
+        </div>  
+    </div>
+    <div class="centered" id="Boto">
+        <label for="maxMoviments">Màxima durada (en moviments)</label>
+        <input type="number" placeholder="(opcional)" id="maxMoviments">
+        <br/>
+        <input type="button" value="Començar Partida" onclick="StartMatch()"/>
+    </div>
+</div>
+<div id="TaulellEscacs"></div>
+<div id="reloadButton">
+    <button onClick="window.location.reload();">Refresh Page</button>
+</div>
+    <script>
+        function DibuixarOpcions(color){
+            let opcions = document.getElementById("opcions"+color);
+            let tria = document.getElementById("player"+color).value;
+            if(tria == 'Engine'){
+                opcions.style.display = 'block';
+            }else{
+                opcions.style.display = 'none';
+            }
+            
+        }
+        function StartMatch(){
+            document.getElementById('reloadButton').style.display = 'block';
+            document.getElementById('formulari').style.display = 'none';
+            document.getElementById('Boto').style.display = 'none';
+            StartGame();
+        }
+        
 
-        });
-        </script>
+    </script>
+
+</body>
 </html>
