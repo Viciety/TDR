@@ -12,9 +12,11 @@ function StartGame(){
         if (ScanInsufficientMaterial(seguentTaulell)){
             resultat = Taules;
         }
-        moviments++;
-        if(resultat == NoHaAcabat && moviments<maxMoviments){
-            console.log(currentPlayerManager)
+        if (maxMoviments != undefined && maxMoviments<moviments){
+            resultat = LimitMoviments;
+        }
+
+        if(resultat == NoHaAcabat){
             currentPlayerManager = (currentPlayerManager + 1) % 2
             playerManagers[currentPlayerManager].manageTorn(seguentTaulell);
         }
@@ -31,6 +33,7 @@ function StartGame(){
     const NoHaAcabat = 0;
     const Victoria = 1;
     const Taules = 2;
+    const LimitMoviments = 3;
 
     //Paràmetres inicials
     let moviments = 0;

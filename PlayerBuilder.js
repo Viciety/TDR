@@ -4,34 +4,31 @@ function BuildPlayers(crida){
     let WorkerBlanc;
 
     if (PlayerBlanc == 'Player'){
-        document.write("jugador blanc")
-    
-    }else if (PlayerBlanc == 'Engine'){
-        let botblanc = document.getElementById("blancChoice1").value;
+        WorkerBlanc = new ManualPlayerManager(crida, BLANC)
 
-        if (botblanc == 'random'){
+    }else if (PlayerBlanc == 'Engine'){
+
+        if(document.getElementById('blancChoice1').checked) {
             WorkerBlanc = new WorkerPlayerManager(crida, BLANC, new RandomMoveChooser());
 
-        }else{
+        }else if (document.getElementById('blancChoice2').checked){
             let scorers = new Array ();
             let depthBlanc = document.getElementById('blancDepth').value;
-            let CheckmateScorerBlanc = document.getElementById('blancScorerChoice1').value;
-            let MaterialAdvantatgeScorerBlanc = document.getElementById('blancScorerChoice2').value;
+            let CheckmateScorerBlanc = document.getElementById('blancScorerChoice1');
+            let MaterialAdvantatgeScorerBlanc = document.getElementById('blancScorerChoice2');
 
-            if (CheckmateScorerBlanc == added){
+            if (CheckmateScorerBlanc.checked){
                 scorers.push(new Array(new CheckmateScorer(), 1))
             }
 
-            if (MaterialAdvantatgeScorerBlanc == added){
+            if (MaterialAdvantatgeScorerBlanc.checked){
                 scorers.push(new Array(new MaterialAdvantatgeScorer(), 1))
             }
 
             let composed = new ComposedScorer(scorers);
-            let deepScorer = new DeepScorer(depthBlanc, composed);
+            let deepScorer = new DeepScorer(parseInt(depthBlanc), composed);
             let MoveChooserBlanc = new ScoreMoveChooser(deepScorer);
             WorkerBlanc = new WorkerPlayerManager(crida,BLANC,MoveChooserBlanc)
-
-
         }
     }else{
 
@@ -42,30 +39,29 @@ function BuildPlayers(crida){
     let WorkerNegre;
 
     if (PlayerNegre == 'Player'){
-        document.write("jugador negre");
+        WorkerNegre = new ManualPlayerManager(crida, NEGRE)
 
     }else if (PlayerNegre == 'Engine'){
-        let botnegre = document.getElementById("negreChoice1").value;
 
-        if (botnegre == 'random'){
-            WorkerNegre = new WorkerPlayerManager(crida, NEGRE, new RandomMoveChooser());
+        if(document.getElementById('negreChoice1').checked) {
+            WorkerBlanc = new WorkerPlayerManager(crida, NEGRE, new RandomMoveChooser());
 
-        }else{
+        }else if (document.getElementById('negreChoice2').checked){
             let scorers = new Array ();
-            let depthNegre = document.getElementById('negreDepth');
-            let CheckmateScorerNegre = document.getElementById('negreScorerChoice1').value;
+            let depthNegre = document.getElementById('negreDepth').value;
+            let CheckmateScorerNegre = document.getElementById('negreScorerChoice1');
             let MaterialAdvantatgeScorerNegre = document.getElementById('negreScorerChoice2');
 
-            if (CheckmateScorerNegre == added){
+            if (CheckmateScorerNegre.checked){
                 scorers.push(new Array(new CheckmateScorer(), 1));
             }
 
-            if (MaterialAdvantatgeScorerNegre == added){
+            if (MaterialAdvantatgeScorerNegre.checked){
                 scorers.push(new Array(new MaterialAdvantatgeScorer(), 1));
             }
 
             let composed = new ComposedScorer(scorers);
-            let deepScorer = new DeepScorer(depthNegre, composed);
+            let deepScorer = new DeepScorer(parseInt(depthNegre), composed);
             let MoveChooserNegre = new ScoreMoveChooser(deepScorer);
             WorkerNegre = new WorkerPlayerManager(crida,NEGRE,MoveChooserNegre);
 

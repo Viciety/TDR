@@ -51,6 +51,7 @@
     <script type="text/javascript" src="ProgramaLogica/MatchFinalDetector.js"></script>
     <script type="text/javascript" src="ProgramaLogica/MoveChooser/MoveScorer/Scorer.js"></script>
     <script type="text/javascript" src="ProgramaLogica/PlayerManager/WorkerPlayerManager.js"></script>
+    <script type="text/javascript" src="ProgramaLogica/PlayerManager/ManualPlayerManager.js"></script>
     <script type="text/javascript" src="DibuixarTaulell.js"></script>
     <script type="text/javascript" src="Funcionalities.js"></script>
     <script type="text/javascript" src="PlayerBuilder.js"></script>
@@ -145,12 +146,31 @@
         <br/>
         <input type="button" value="Començar Partida" onclick="StartMatch()"/>
     </div>
+    <div id="TaulellEscacs"></div>
+    <div class="movmentInput" id="movmentInput">
+        <br/>
+        <label for="horitzontalInicial">Posició Inicial</label>
+        <input type="number" id="horitzontalInicial" placeholder="Horitzontal"/>
+        <input type="number" id="verticalInicial" placeholder="Vertical"/>
+        <br/>
+        <label for="horitzontalFinal">Posició Final:</label>
+        <input type="number" id="horitzontalFinal" placeholder="Horitzontal"/>
+        <input type="number" id="verticalFinal" placeholder="Vertical"/>
+        <br/>
+        <input type="button" id="moveSubmit" value="Entrar"/>
+        <br/>
+
+        <div id="movmentError"></div>
+
+    </div>
 </div>
-<div id="TaulellEscacs"></div>
 <div id="reloadButton">
+    <br/>
     <button onClick="window.location.reload();">Refresh Page</button>
 </div>
     <script>
+        document.getElementById('movmentInput').style.display = 'none'
+
         function DibuixarOpcions(color){
             let opcions = document.getElementById("opcions"+color);
             let tria = document.getElementById("player"+color).value;

@@ -104,5 +104,13 @@ class Taulell{
         return pecesiPosicio
     }
 
+    equalTaulell(taulell){
+        let a = this.array;
+        let b = taulell.array;
+        return Array.isArray(a) && 
+            Array.isArray(b) &&
+            a.length === b.length &&
+            a.every((val, index) => val.peça === b[index].peça);
+    }
     
 }
