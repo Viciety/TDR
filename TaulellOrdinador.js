@@ -47,7 +47,7 @@ class Taulell{
         for (let inicialVerticalCoord = 0;inicialVerticalCoord <this.array.length; inicialVerticalCoord ++){
             for (let inicialHoritzontalCoord = 0; inicialHoritzontalCoord<this.array[inicialVerticalCoord].length; inicialHoritzontalCoord++){
                 if (this.array[inicialVerticalCoord][inicialHoritzontalCoord].peça == fitxa){
-                    posicio.push(inicialVerticalCoord, inicialHoritzontalCoord);
+                    posicio.push(new Array (inicialVerticalCoord, inicialHoritzontalCoord));
                 }
             }
         }
@@ -107,10 +107,16 @@ class Taulell{
     equalTaulell(taulell){
         let a = this.array;
         let b = taulell.array;
-        return Array.isArray(a) && 
-            Array.isArray(b) &&
-            a.length === b.length &&
-            a.every((val, index) => val.peça === b[index].peça);
+
+        return Array.isArray(a) && Array.isArray(b) && a.length === b.length && a.every((val1, index1) => {
+            return val1.every((val2, index2) => {
+                if (val2 == BUIDA){
+                    return b[index1][index2] == BUIDA
+                }else{
+                    return val2.peça === b[index1][index2].peça
+                }
+            })
+        });
     }
     
 }

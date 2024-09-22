@@ -157,7 +157,26 @@
         <input type="number" id="horitzontalFinal" placeholder="Horitzontal"/>
         <input type="number" id="verticalFinal" placeholder="Vertical"/>
         <br/>
+        <br/>
+
+        <input type="radio" id="queenPromotion" value="Entrar" name="possiblePromotion"/>
+        <label for="queenPromotion">Reina</label>
+
+        <input type="radio" id="rookPromotion" value="Entrar" name="possiblePromotion"/>
+        <label for="rookPromotion">Torre</label>
+
+        <input type="radio" id="knightPromotion" value="Entrar" name="possiblePromotion"/>
+        <label for="knightPromotion">Cavall</label>
+
+        <input type="radio" id="bishopPromotion" value="Entrar" name="possiblePromotion"/>
+        <label for="bishopPromotion">Alfil</label>
+
+
+        <br/>
+        <br/>
+
         <input type="button" id="moveSubmit" value="Entrar"/>
+        <br/>
         <br/>
 
         <div id="movmentError"></div>
@@ -187,6 +206,7 @@
             document.getElementById('Boto').style.display = 'none';
             StartGame();
         }
+        
         
 
     </script>

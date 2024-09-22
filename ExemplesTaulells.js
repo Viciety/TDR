@@ -37,3 +37,15 @@ let SmotheredMateNegreIn2 = new Taulell()
     .addFitxaEnPosicio(6, 0, new Peo(BLANC, true))
     .addFitxaEnPosicio(6, 1, new Peo(BLANC, true))
     .addFitxaEnPosicio(7, 7, new Torre(BLANC, true))
+
+// COMPROVACIÓ ENROC 
+let TaulellEnroc = new Taulell()
+    .addFitxaEnPosicio(7, 4, new Rei(BLANC, false))
+    .addFitxaEnPosicio(0, 4, new Rei(NEGRE, false))
+    .addFitxaEnPosicio(0, 7, new Torre(NEGRE, false))
+    .addFitxaEnPosicio(7, 0, new Torre(BLANC, false))
+
+// TAULELL AMB REIS
+let TaulellBuit = new Taulell()
+    .addFitxaEnPosicio(7, 4, new Rei(BLANC, false))
+    .addFitxaEnPosicio(0, 4, new Rei(NEGRE, false))

@@ -69,4 +69,29 @@ describe('Un Taulell', function() {
             expect(finalAmbMoviment.getFitxaEnPosicio(4, 4).color).toEqual(NEGRE);
         });
     });
+
+    describe('Test equalTaulell', function() {
+        let tauell1 = new Taulell();
+
+        it('Ha de tornar igual en taulells buits', function() {
+            let tauell2 = new Taulell();
+            expect(tauell1.equalTaulell(tauell2)).toEqual(true)
+            expect(tauell2.equalTaulell(tauell1)).toEqual(true)
+        });
+
+        it('Ha de tornar igual en taulells plens', function() {
+            let tauell2 = tauell1.addFitxaEnPosicio(0, 0, new Reina(BLANC, false));
+            let tauell3 = tauell1.addFitxaEnPosicio(0, 0, new Reina(BLANC, false));
+            expect(tauell2.equalTaulell(tauell3)).toEqual(true)
+            expect(tauell3.equalTaulell(tauell2)).toEqual(true)
+
+        });
+
+        it('Ha de tornar Diferent', function() {
+            let tauell2 = tauell1.addFitxaEnPosicio(0, 0, new Reina(BLANC, false))
+            expect(tauell1.equalTaulell(tauell2)).toEqual(false)
+            expect(tauell2.equalTaulell(tauell1)).toEqual(false)
+
+        });
+    });
 });

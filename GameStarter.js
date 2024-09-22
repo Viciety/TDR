@@ -25,7 +25,7 @@ function StartGame(){
     let playerManagers = BuildPlayers(crida);
 
     //Definició del Taulell
-    let inicial = TwoVSOnePawnAndKings;
+    let inicial = new Taulell(true);
 
     //Pintant el Taulell al l'HTML
     DibuixarTaulell(inicial);

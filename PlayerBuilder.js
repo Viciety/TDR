@@ -44,7 +44,7 @@ function BuildPlayers(crida){
     }else if (PlayerNegre == 'Engine'){
 
         if(document.getElementById('negreChoice1').checked) {
-            WorkerBlanc = new WorkerPlayerManager(crida, NEGRE, new RandomMoveChooser());
+            WorkerNegre = new WorkerPlayerManager(crida, NEGRE, new RandomMoveChooser());
 
         }else if (document.getElementById('negreChoice2').checked){
             let scorers = new Array ();

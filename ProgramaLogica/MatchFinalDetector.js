@@ -24,7 +24,7 @@ function ScanCheck(taulell, jugador){
         Rei = REI_BLANC
         ReiRival = REI_NEGRE
     }
-    let posicioRei = taulell.getPosicioFitxa(Rei);
+    let posicioRei = taulell.getPosicioFitxa(Rei)[0];
     if (posicioRei.length != 2){
         throw "No hi ha rei"
     }
@@ -70,12 +70,12 @@ function ScanInsufficientMaterial(taulell){
         return false;
     }else if (peces.length == 4 && peces.filter((fitxa) => 
         fitxa[0].peça != CAVALL_BLANC 
-        && fitxa[0].peça != CAVALL_BLANC 
+        && fitxa[0].peça != CAVALL_NEGRE 
         && fitxa[0].peça != REI_BLANC 
         && fitxa[0].peça != REI_NEGRE
     ).length == 0){
         return true
-    }else if(peces.length == 3){
+    }else if(peces.length == 3 || peces.length == 2){
         return true;
     }else{
         return false;
