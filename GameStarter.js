@@ -19,13 +19,14 @@ function StartGame(){
         if(resultat == NoHaAcabat){
             currentPlayerManager = (currentPlayerManager + 1) % 2
             playerManagers[currentPlayerManager].manageTorn(seguentTaulell);
+            moviments=moviments+1
         }
     };
 
     let playerManagers = BuildPlayers(crida);
 
     //Definició del Taulell
-    let inicial = new Taulell(true);
+    let inicial = SmotheredMateNegreIn2;
 
     //Pintant el Taulell al l'HTML
     DibuixarTaulell(inicial);

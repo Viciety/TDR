@@ -13,6 +13,6 @@ class WorkerPlayerManager{
                 throw "Error, no hi ha possible moviments";
             }
             this.crida(seguentTaulell);
-        });
+        }, 1000);
     }
 }

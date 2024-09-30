@@ -49,7 +49,8 @@
     <script type="text/javascript" src="ProgramaLogica/MoveKnower/Alfil.js"></script>
     <script type="text/javascript" src="ProgramaLogica/MoveKnower/Reina.js"></script>
     <script type="text/javascript" src="ProgramaLogica/MatchFinalDetector.js"></script>
-    <script type="text/javascript" src="ProgramaLogica/MoveChooser/MoveScorer/Scorer.js"></script>
+    <script type="text/javascript" src="ProgramaLogica/MoveChooser/MoveScorer/CheckmateScorer.js"></script>
+    <script type="text/javascript" src="ProgramaLogica/MoveChooser/MoveScorer/MaterialAdvantatgeScorer.js"></script>
     <script type="text/javascript" src="ProgramaLogica/PlayerManager/WorkerPlayerManager.js"></script>
     <script type="text/javascript" src="ProgramaLogica/PlayerManager/ManualPlayerManager.js"></script>
     <script type="text/javascript" src="DibuixarTaulell.js"></script>
@@ -90,9 +91,6 @@
                         <option value="9" >9</option>
                     </select>
                     <br/>
-                    <input type="checkbox" id="blancScorerChoice1" name="Scorers" value="Checkmate" />
-                    <label for="blancScorerChoice1">Checkmate Scorer</label>
-                    <br/>
                     <input type="checkbox" id="blancScorerChoice2" name="Scorers" value="MaterialAdvantadge" />
                     <label for="blancScorerChoice2">MaterialAdvantadge Scorer</label>
 
@@ -129,9 +127,7 @@
                         <option value="7" >7</option>
                         <option value="8" >8</option>
                         <option value="9" >9</option>
-                    </select>                <br/>
-                    <input type="checkbox" id="negreScorerChoice1" name="Scorers" value="added" />
-                    <label for="negreScorerChoice1">Checkmate Scorer</label>
+                    </select>                
                     <br/>
                     <input type="checkbox" id="negreScorerChoice2" name="Scorers" value="added" />
                     <label for="negreScorerChoice2">MaterialAdvantadge Scorer</label>
