@@ -40,10 +40,8 @@ class ComposedScore{
     compare(other){
         let checkmateScoreDif = this.checkmateScore - other.checkmateScore;
         if(checkmateScoreDif == 0){
-            console.log("calculant numeric")
             return this.getNumericScore() - other.getNumericScore();
         }else{
-            console.log("diferencia checkmate")
             return checkmateScoreDif;
         }
     }

@@ -6,19 +6,21 @@ class DeepScorer{
             throw "Invalid depth: "+depth;
         }
         this.scorer = scorer;
+        this.taulellsRevisats = 0;
         this.iteracions = 0;
+        this.temps = Date.now();
     }
 
     scoreBoard(taulell, jugador){
-        let temps = Date.now();
-        let result = this.movmentTree(this.depth, taulell, !jugador, jugador);
-        console.log((Date.now()-temps)/1000);
-        this.iteracions = this.iteracions+1;
-        console.log(this.iteracions);
-        return result;
+        this.taulellsRevisats = this.taulellsRevisats+1;
+        console.log("Taulells Revisats: "+this.taulellsRevisats+"////////////////////////////////////////////////////////////////////////////////////////////////////////");
+        return this.movmentTree(this.depth, taulell, !jugador, jugador);
     }
     
     movmentTree(depth, taulell, torn, jugador){
+        console.log("Temps: "+(Date.now()-this.temps)/1000);
+        this.iteracions = this.iteracions+1;
+        console.log("Iteracions: "+this.iteracions);
         if (depth<=0){
             let score = this.scorer.scoreBoard(taulell, jugador);
             return new DeepScore(score, 0);
