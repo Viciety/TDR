@@ -37,7 +37,7 @@ class Taulell{
 
     getFitxaEnPosicio(inicialVerticalCoord, inicialHoritzontalCoord){
         if (inicialVerticalCoord>7 ||inicialVerticalCoord <0 || inicialHoritzontalCoord>7 || inicialHoritzontalCoord<0){
-            throw "Posició "+i+", "+inicialHoritzontalCoord+" invàlida"
+            throw "Posició "+inicialVerticalCoord+", "+inicialHoritzontalCoord+" invàlida"
         }
         return this.array[inicialVerticalCoord][inicialHoritzontalCoord];
     }
@@ -91,7 +91,7 @@ class Taulell{
         return taulellMogut
     }
 
-    getAllFitxaEnPosicio(){
+    getAllFitxaEnPosicio(){ 
         let pecesiPosicio = new Array();
         for (let inicialVerticalCoord = 0;inicialVerticalCoord <this.array.length;inicialVerticalCoord ++){
             for (let inicialHoritzontalCoord = 0; inicialHoritzontalCoord<this.array[inicialVerticalCoord].length; inicialHoritzontalCoord++){

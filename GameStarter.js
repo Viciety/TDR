@@ -12,7 +12,7 @@ function StartGame(){
         if (ScanInsufficientMaterial(seguentTaulell)){
             resultat = Taules;
         }
-        if (maxMoviments != undefined && maxMoviments<moviments){
+        if (maxMoviments != "" && maxMoviments<moviments){
             resultat = LimitMoviments;
         }
 
@@ -26,7 +26,7 @@ function StartGame(){
     let playerManagers = BuildPlayers(crida);
 
     //Definició del Taulell
-    let inicial = SmotheredMateNegreIn2;
+    let inicial = new Taulell(true);
 
     //Pintant el Taulell al l'HTML
     DibuixarTaulell(inicial);

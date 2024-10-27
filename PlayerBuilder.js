@@ -15,9 +15,14 @@ function BuildPlayers(crida){
             let scorers = new Array ();
             let depthBlanc = document.getElementById('blancDepth').value;
             let MaterialAdvantatgeScorerBlanc = document.getElementById('blancScorerChoice2');
+            let MovmentScorerBlanc = document.getElementById('blancScorerChoice3');
+
 
             if (MaterialAdvantatgeScorerBlanc.checked){
                 scorers.push(new Array(new MaterialAdvantatgeScorer(), 1))
+            }
+            if (MovmentScorerBlanc.checked){
+                scorers.push(new Array(new MovmentScorer(), 1))
             }
 
             let composed = new ComposedScorer(new CheckmateScorer, scorers);
@@ -45,9 +50,13 @@ function BuildPlayers(crida){
             let scorers = new Array ();
             let depthNegre = document.getElementById('negreDepth').value;
             let MaterialAdvantatgeScorerNegre = document.getElementById('negreScorerChoice2');
+            let MovmentScorerNegre = document.getElementById('negreScorerChoice3');
 
             if (MaterialAdvantatgeScorerNegre.checked){
                 scorers.push(new Array(new MaterialAdvantatgeScorer(), 1));
+            }
+            if (MovmentScorerNegre.checked){
+                scorers.push(new Array(new MovmentScorer(), 1))
             }
 
             let composed = new ComposedScorer(new CheckmateScorer, scorers);

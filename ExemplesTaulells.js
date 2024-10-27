@@ -49,3 +49,17 @@ let TaulellEnroc = new Taulell()
 let TaulellBuit = new Taulell()
     .addFitxaEnPosicio(7, 4, new Rei(BLANC, false))
     .addFitxaEnPosicio(0, 4, new Rei(NEGRE, false))
+
+//AVAVNTATGE MATERIAL NEGRE
+let CaptureReinaNegre2 = new Taulell()
+    .addFitxaEnPosicio(0, 0, new Rei(BLANC, true))
+    .addFitxaEnPosicio(2, 3, new Rei(NEGRE, true))
+    .addFitxaEnPosicio(6, 2, new Torre(BLANC, true))
+    .addFitxaEnPosicio(7, 1, new Reina(BLANC, true))
+    .addFitxaEnPosicio(5, 0, new Cavall(NEGRE, true));
+
+let CaptureReinaNegre = new Taulell()
+    .addFitxaEnPosicio(0, 0, new Rei(BLANC, true))
+    .addFitxaEnPosicio(2, 3, new Rei(NEGRE, true))
+    .addFitxaEnPosicio(7, 1, new Reina(BLANC, true))
+    .addFitxaEnPosicio(5, 0, new Cavall(NEGRE, true));
