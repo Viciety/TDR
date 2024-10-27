@@ -11,11 +11,11 @@ class ComposedScorer{
     scoreBoard(taulell, jugador){
         let scorers = this.scorers;
         return new ComposedScore(
-            this.checkMateScorer.scoreBoard(taulell,jugador), 
+            this.checkMateScorer.scoreBoard(taulell,jugador).getNumericScore(), 
             function(){
                 return scorers.reduce(
                     (actualScore, scorerArray) => 
-                    actualScore + scorerArray[0].scoreBoard(taulell,jugador)*scorerArray[1], 
+                    actualScore + scorerArray[0].scoreBoard(taulell,jugador).getNumericScore()*scorerArray[1], 
                     0
                 )
             }
@@ -30,7 +30,7 @@ class ComposedScore{
         this.numericScore = undefined;
     }
 
-    getNumericScore(){
+    getNumericScore(){  
         if(this.numericScore == undefined){
             this.numericScore = this.numericScoreCalculator();
         }
@@ -38,10 +38,13 @@ class ComposedScore{
     }
 
     compare(other){
-        if(this.checkmateScore == 1){
-            return 1;
+        let checkmateScoreDif = this.checkmateScore - other.checkmateScore;
+        if(checkmateScoreDif == 0){
+            console.log("calculant numeric")
+            return this.getNumericScore() - other.getNumericScore();
         }else{
-            return this.checkmateScore - other.checkmateScore;
+            console.log("diferencia checkmate")
+            return checkmateScoreDif;
         }
     }
 }

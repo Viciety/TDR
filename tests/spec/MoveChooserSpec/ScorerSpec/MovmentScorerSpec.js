@@ -10,8 +10,8 @@ describe('MovmentScorer', function() {
         let scorer = new MovmentScorer();
 
         it('Ha de tornar 8 pel rei i 1 pel peó', function() {
-            expect(scorer.scoreBoard(taulell1, BLANC)).toEqual(8);
-            expect(scorer.scoreBoard(taulell2, BLANC)).toEqual(9);
+            expect(scorer.scoreBoard(taulell1, BLANC).score).toEqual(8);
+            expect(scorer.scoreBoard(taulell2, BLANC).score).toEqual(9);
         });
     });
 
@@ -27,7 +27,7 @@ describe('MovmentScorer', function() {
             .addFitxaEnPosicio(7, 1, new Torre(BLANC, true));
 
         it('Ha de tornar true si li toca al blanc', function() {
-        expect(scorer.scoreBoard(taulellAmbPeo, NEGRE)).toEqual(LlistarMovimentsValids(taulellAmbPeo, NEGRE).length);
+        expect(scorer.scoreBoard(taulellAmbPeo, NEGRE).score).toEqual(LlistarMovimentsValids(taulellAmbPeo, NEGRE).length);
         });
     });
     

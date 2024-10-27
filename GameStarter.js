@@ -26,7 +26,7 @@ function StartGame(){
     let playerManagers = BuildPlayers(crida);
 
     //Definició del Taulell
-    let inicial = new Taulell(true);
+    let inicial = SmotheredMateNegreIn2;
 
     //Pintant el Taulell al l'HTML
     DibuixarTaulell(inicial);

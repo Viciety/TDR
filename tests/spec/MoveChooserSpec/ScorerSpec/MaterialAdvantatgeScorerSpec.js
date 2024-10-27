@@ -12,8 +12,8 @@ describe('MaterialAdvantatgeScorer', function() {
         let scorer = new MaterialAdvantatgeScorer();
 
         it('Ha de tornar el primer, que és el que esta en checkmate', function() {
-            expect(scorer.scoreBoard(taulell1, BLANC)).toEqual(9);
-            expect(scorer.scoreBoard(taulell2, BLANC)).toEqual(0);
+            expect(scorer.scoreBoard(taulell1, BLANC).score).toEqual(9);
+            expect(scorer.scoreBoard(taulell2, BLANC).score).toEqual(0);
         });
 
     });

@@ -4,9 +4,9 @@ class MaterialAdvantatgeScorer{
         let score = undefined;
         let MaterialBalance = taulell.getAllFitxaEnPosicio().reduce((balance, fitxaIPosicio) => balance + fitxaIPosicio[0].valor, 0);
         if (jugador == BLANC){
-            return MaterialBalance;
+            return new NumericScore(MaterialBalance);
         }else{
-            return -MaterialBalance;
+            return new NumericScore(-MaterialBalance);
         }
     }
 

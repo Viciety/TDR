@@ -2,9 +2,9 @@ class CheckmateScorer{
     
     scoreBoard(taulell, jugador){
         if(ScanCheckmate(taulell, !jugador)){
-            return 1;
+            return new NumericScore(1);
         }else{
-            return 0;
+            return new NumericScore(0);
         }
     }
 

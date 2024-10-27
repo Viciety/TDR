@@ -12,8 +12,8 @@ describe('CheckmateScorer', function() {
         let scorer = new CheckmateScorer();
 
         it('Ha de tornar el primer, que és el que esta en checkmate', function() {
-            expect(scorer.scoreBoard(taulell1, BLANC)).toEqual(1);
-            expect(scorer.scoreBoard(taulell2, BLANC)).toEqual(0);
+            expect(scorer.scoreBoard(taulell1, BLANC).score).toEqual(1);
+            expect(scorer.scoreBoard(taulell2, BLANC).score).toEqual(0);
         });
     });
 
@@ -29,7 +29,7 @@ describe('CheckmateScorer', function() {
             .addFitxaEnPosicio(7, 1, new Torre(BLANC, true));
 
         it('Ha de tornar true si li toca al blanc', function() {
-        expect(scorer.scoreBoard(taulellAmbPeo, NEGRE)).toEqual(1);
+        expect(scorer.scoreBoard(taulellAmbPeo, NEGRE).score).toEqual(1);
         });
     });
     

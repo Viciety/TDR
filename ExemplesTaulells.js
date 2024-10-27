@@ -63,3 +63,40 @@ let CaptureReinaNegre = new Taulell()
     .addFitxaEnPosicio(2, 3, new Rei(NEGRE, true))
     .addFitxaEnPosicio(7, 1, new Reina(BLANC, true))
     .addFitxaEnPosicio(5, 0, new Cavall(NEGRE, true));
+
+// KASPAROV VS DEEPBLUE 1996
+let KasparovVSDeepBlue1996 = new Taulell()
+    .addFitxaEnPosicio(0, 0, new Torre(NEGRE, false))
+    .addFitxaEnPosicio(0, 2, new Alfil(NEGRE, false))
+    .addFitxaEnPosicio(0, 3, new Reina(NEGRE, false))
+    .addFitxaEnPosicio(0, 4, new Rei(NEGRE, false))
+    .addFitxaEnPosicio(0, 5, new Alfil(NEGRE, false))
+    .addFitxaEnPosicio(0, 7, new Torre(NEGRE, true))
+    .addFitxaEnPosicio(1, 0, new Peo(NEGRE, false))
+    .addFitxaEnPosicio(1, 1, new Peo(NEGRE, false))
+    .addFitxaEnPosicio(2, 2, new Peo(NEGRE, true))
+    .addFitxaEnPosicio(1, 3, new Cavall(NEGRE, true))
+    .addFitxaEnPosicio(2, 4, new Peo(NEGRE, true))
+    .addFitxaEnPosicio(1, 5, new Peo(NEGRE, false))
+    .addFitxaEnPosicio(2, 5, new Cavall(NEGRE, true))
+    .addFitxaEnPosicio(1, 6, new Peo(NEGRE, false))
+    .addFitxaEnPosicio(2, 7, new Peo(NEGRE, true))
+
+    .addFitxaEnPosicio(3, 6, new Cavall(BLANC, true))
+    .addFitxaEnPosicio(4, 3, new Peo(BLANC, true))
+    .addFitxaEnPosicio(5, 3, new Alfil(BLANC, true))
+    .addFitxaEnPosicio(5, 5, new Cavall(BLANC, true))
+    
+    .addFitxaEnPosicio(6, 0, new Peo(BLANC, false))
+    .addFitxaEnPosicio(6, 1, new Peo(BLANC, false))
+    .addFitxaEnPosicio(6, 2, new Peo(BLANC, false))
+    .addFitxaEnPosicio(6, 5, new Peo(BLANC, false))
+    .addFitxaEnPosicio(6, 6, new Peo(BLANC, false))
+    .addFitxaEnPosicio(6, 7, new Peo(BLANC, false))
+
+    .addFitxaEnPosicio(7, 0, new Torre(BLANC, false))
+    .addFitxaEnPosicio(7, 2, new Alfil(BLANC, false))
+    .addFitxaEnPosicio(7, 3, new Reina(BLANC, false))
+    .addFitxaEnPosicio(7, 4, new Rei(BLANC, false))
+    .addFitxaEnPosicio(7, 7, new Torre(BLANC, false));
+
