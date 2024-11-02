@@ -6,13 +6,21 @@ class DeepScorer{
             throw "Invalid depth: "+depth;
         }
         this.scorer = scorer;
+        this.temps = Date.now();
+        this.iteracions = 0;
+        this.taulellsRevistats = 0;
     }
 
     scoreBoard(taulell, jugador){
+        this.taulellsRevistats = this.taulellsRevistats+1;
+        console.log("Taulells Revisats: "+this.taulellsRevistats+" ///////////////////////////////////////////////////////////////")
         return this.movmentTree(this.depth, taulell, !jugador, jugador);
     }
     
     movmentTree(depth, taulell, torn, jugador){
+        this.iteracions = this.iteracions+1;
+        console.log("Iteracions: "+this.iteracions);
+        console.log("Temps: "+(Date.now()-this.temps))
         if (depth<=0){
             let score = this.scorer.scoreBoard(taulell, jugador);
             return score;
